@@ -1,5 +1,10 @@
 <?php
-require_once "../app/config/database.php";
+session_start();
+if (!isset($_SESSION['admin_logged_in'])) {
+    header("Location: login.php");
+    exit;
+}
+require_once __DIR__ . "/../app/config/database.php";
 
 $sql = "
     SELECT 
@@ -33,7 +38,9 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <h2>All Customer Orders</h2>
 
-    <a href="../index.php">Back to Website</a>
+    <a href="../index.php">Back to Website</a> <br><br>
+    <a href="logout.php">Logout</a>
+
     <br><br>
 
     <?php if (count($orders) > 0): ?>

@@ -1,5 +1,5 @@
 <?php
-$host  = "localhost";
+$host = "localhost";
 $dbname = "ro_water_delivery";
 $username = "root";
 $password = "root";
@@ -14,5 +14,5 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch (PDOException $e) {
-    die("Database connection failed:" . $e->getMessage());
+    die("Database connection failed: " . $e->getMessage());
 }
