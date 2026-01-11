@@ -18,7 +18,7 @@ if (!$customer) {
 
 // Fetch orders for this customer
 $stmt = $conn->prepare(
-    "SELECT quantity, order_type, status, order_date
+    "SELECT quantity, delivery_date, status, order_date
      FROM orders
      WHERE customer_id = :cid
      ORDER BY order_date DESC"
@@ -46,7 +46,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <table border="1" cellpadding="10">
             <tr>
                 <th>Quantity</th>
-                <th>Order Type</th>
+                <th>Delivery Date</th>
                 <th>Status</th>
                 <th>Order Date</th>
             </tr>
@@ -54,7 +54,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php foreach ($orders as $o): ?>
                 <tr>
                     <td><?php echo $o['quantity']; ?></td>
-                    <td><?php echo ucfirst($o['order_type']); ?></td>
+                    <td><?php echo ucfirst($o['delivery_date']); ?></td>
                     <td><?php echo ucfirst($o['status']); ?></td>
                     <td><?php echo $o['order_date']; ?></td>
                 </tr>

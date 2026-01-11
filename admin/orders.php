@@ -25,7 +25,7 @@ $sql = "
         customers.mobile,
         customers.address,
         orders.quantity,
-        orders.order_type,
+        orders.delivery_date,
         orders.status,
         orders.order_date
     FROM orders
@@ -64,9 +64,9 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <th>Mobile</th>
                 <th>Address</th>
                 <th>Quantity</th>
-                <th>Order Type</th>
+                <th>Delivery Date</th>
                 <th>Status</th>
-                <th>Order Date</th>
+                <th>Booking Date</th>
                 <th>Action</th>
             </tr>
 
@@ -77,7 +77,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($order['mobile']); ?></td>
                     <td><?php echo htmlspecialchars($order['address']); ?></td>
                     <td><?php echo $order['quantity']; ?></td>
-                    <td><?php echo ucfirst($order['order_type']); ?></td>
+                    <td><?php echo ucfirst($order['delivery_date']); ?></td>
                     <td><?php echo ucfirst($order['status']); ?></td>
                     <td><?php echo $order['order_date']; ?></td>
                     <td>

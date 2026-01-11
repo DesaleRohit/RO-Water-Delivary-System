@@ -28,6 +28,7 @@ $stmt = $conn->prepare("
         customers.name,
         customers.mobile,
         orders.quantity,
+        orders.delivery_date,
         orders.status,
         orders.order_date
     FROM orders
@@ -84,8 +85,9 @@ $recentOrders = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <th>Customer</th>
         <th>Mobile</th>
         <th>Qty</th>
+        <th>Delivery Date</th>
         <th>Status</th>
-        <th>Date</th>
+        <th>Booking Date</th>
     </tr>
 
     <?php foreach ($recentOrders as $order): ?>
@@ -94,6 +96,7 @@ $recentOrders = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <td><?php echo htmlspecialchars($order['name']); ?></td>
         <td><?php echo htmlspecialchars($order['mobile']); ?></td>
         <td><?php echo $order['quantity']; ?></td>
+         <td><?php echo $order['delivery_date']; ?></td>
         <td><?php echo ucfirst($order['status']); ?></td>
         <td><?php echo $order['order_date']; ?></td>
     </tr>

@@ -9,9 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $mobile = trim($_POST['mobile']);
     $address = trim($_POST['address']);
     $quantity = (int)$_POST['quantity'];
-    $order_type = $_POST['order_type'];
+    $delivery_date = $_POST['delivery_date'];
 
-    if ($name && $mobile && $address && $quantity > 0 && $order_type) {
+    if ($name && $mobile && $address && $quantity > 0 && $delivery_date) {
 
         // Check if customer already exists (by mobile)
         $stmt = $conn->prepare("SELECT id FROM customers WHERE mobile = :mobile");
@@ -38,12 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Insert order
         $stmt = $conn->prepare(
-            "INSERT INTO orders (customer_id, quantity, order_type)
-             VALUES (:customer_id, :quantity, :order_type)"
+            "INSERT INTO orders (customer_id, quantity, delivery_date)
+             VALUES (:customer_id, :quantity, :delivery_date)"
         );
         $stmt->bindParam(":customer_id", $customer_id);
         $stmt->bindParam(":quantity", $quantity);
-        $stmt->bindParam(":order_type", $order_type);
+        $stmt->bindParam(":delivery_date", $delivery_date);
         $stmt->execute();
 
         // Redirect to success page
@@ -85,13 +85,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <label>Number of Water Cans (20L):</label><br>
         <input type="number" name="quantity" min="1" required><br><br>
 
-        <label>Order Type:</label><br>
-        <select name="order_type" required>
-            <option value="">-- Select --</option>
-            <option value="one_time">One Time</option>
-            <option value="daily">Daily</option>
-            <option value="monthly">Monthly</option>
-        </select><br><br>
+        <label>Delivery Date:</label><br>
+        <input type="date" name="delivery_date" required><br><br>
+        <br><br>
 
         <button type="submit">Place Order</button>
 
