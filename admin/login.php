@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($admin) {
         $_SESSION['admin_logged_in'] = true;
         $_SESSION['admin_username'] = $admin['username'];
-        header("Location: orders.php");
+        header("Location: dashboard.php");
         exit;
     } else {
         $error = "Invalid login details";
@@ -34,26 +34,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Admin Login</title>
 </head>
+
 <body>
 
-<h2>Admin Login</h2>
+    <h2>Admin Login</h2>
 
-<?php if ($error): ?>
-    <p style="color:red;"><?php echo $error; ?></p>
-<?php endif; ?>
+    <?php if ($error): ?>
+        <p style="color:red;"><?php echo $error; ?></p>
+    <?php endif; ?>
 
-<form method="post">
-    <label>Username:</label><br>
-    <input type="text" name="username" required><br><br>
+    <form method="post">
+        <label>Username:</label><br>
+        <input type="text" name="username" required><br><br>
 
-    <label>Password:</label><br>
-    <input type="password" name="password" required><br><br>
+        <label>Password:</label><br>
+        <input type="password" name="password" required><br><br>
 
-    <button type="submit">Login</button>
-</form>
+        <button type="submit">Login</button>
+    </form>
 
 </body>
+
 </html>

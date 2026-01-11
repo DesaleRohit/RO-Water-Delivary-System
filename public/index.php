@@ -12,6 +12,9 @@
     <p>Clean & safe drinking water at your doorstep.</p>
 
     <a href="order.php">Order Water Can</a>
+    <br>
+    <a href="track-order.php">Track My Orders</a>
+
 
 </body>
 

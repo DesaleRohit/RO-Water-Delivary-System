@@ -6,6 +6,18 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 require_once __DIR__ . "/../app/config/database.php";
 
+//Handle status update
+if (isset($_GET['deliver_id'])) {
+    $orderId = (int) $_GET['deliver_id'];
+
+    $stmt = $conn->prepare(
+        "UPDATE orders SET status = 'delivered' WHERE id = :id"
+    );
+    $stmt->execute([':id' => $orderId]);
+
+    header("Location: orders.php");
+    exit;
+}
 $sql = "
     SELECT 
         orders.id AS order_id,
@@ -38,7 +50,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <h2>All Customer Orders</h2>
 
-    <a href="../index.php">Back to Website</a> <br><br>
+    <a href="dashboard.php">Back to Website</a> <br><br>
     <a href="logout.php">Logout</a>
 
     <br><br>
@@ -55,6 +67,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <th>Order Type</th>
                 <th>Status</th>
                 <th>Order Date</th>
+                <th>Action</th>
             </tr>
 
             <?php foreach ($orders as $order): ?>
@@ -67,6 +80,15 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo ucfirst($order['order_type']); ?></td>
                     <td><?php echo ucfirst($order['status']); ?></td>
                     <td><?php echo $order['order_date']; ?></td>
+                    <td>
+                        <?php if ($order['status'] === 'pending'): ?>
+                            <a href="orders.php?deliver_id=<?php echo $order['order_id']; ?>">
+                                Mark as Delivered
+                            </a>
+                        <?php else: ?>
+                             Delivered
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
 
