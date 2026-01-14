@@ -11,6 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $quantity = (int)$_POST['quantity'];
     $delivery_date = $_POST['delivery_date'];
 
+    if ($delivery_date < date('Y-m-d')) {
+        die("Invalid delivery date selected.");
+    }
     if ($name && $mobile && $address && $quantity > 0 && $delivery_date) {
 
         // Check if customer already exists (by mobile)
@@ -86,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="number" name="quantity" min="1" required><br><br>
 
         <label>Delivery Date:</label><br>
-        <input type="date" name="delivery_date" required><br><br>
+        <input type="date" name="delivery_date" id="delivery_date" required><br><br>
         <br><br>
 
         <button type="submit">Place Order</button>
@@ -95,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <br>
     <a href="index.php">Back to Home</a>
-
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
