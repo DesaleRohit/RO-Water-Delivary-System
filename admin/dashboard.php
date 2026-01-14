@@ -21,7 +21,7 @@ $deliveredOrders = $conn->query("SELECT COUNT(*) FROM orders WHERE status = 'del
 // Total customers
 $totalCustomers = $conn->query("SELECT COUNT(*) FROM customers")->fetchColumn();
 
-//for Recent Orders 
+//for Today's Orders 
 $stmt = $conn->prepare("
     SELECT 
         orders.id,
@@ -33,78 +33,81 @@ $stmt = $conn->prepare("
         orders.order_date
     FROM orders
     JOIN customers ON orders.customer_id = customers.id
+    WHERE DATE(orders.order_date) = CURDATE()
     ORDER BY orders.order_date DESC
-    LIMIT 5
 ");
 
 $stmt->execute();
 
-$recentOrders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$todaysOrders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard | RO Water Delivery</title>
 </head>
+
 <body>
 
-<h1>Admin Dashboard</h1>
-<p>Welcome, <strong><?php echo $_SESSION['admin_username']; ?></strong></p>
+    <h1>Admin Dashboard</h1>
+    <p>Welcome, <strong><?php echo $_SESSION['admin_username']; ?></strong></p>
 
-<hr>
+    <hr>
 
 
-<h3>Summary</h3>
-<ul>
-    <li>Total Orders: <strong><?php echo $totalOrders; ?></strong></li>
-    <li>Pending Orders: <strong><?php echo $pendingOrders; ?></strong></li>
-    <li>Delivered Orders: <strong><?php echo $deliveredOrders; ?></strong></li>
-    <li>Total Customers: <strong><?php echo $totalCustomers; ?></strong></li>
-</ul>
+    <h3>Summary</h3>
+    <ul>
+        <li>Total Orders: <strong><?php echo $totalOrders; ?></strong></li>
+        <li>Pending Orders: <strong><?php echo $pendingOrders; ?></strong></li>
+        <li>Delivered Orders: <strong><?php echo $deliveredOrders; ?></strong></li>
+        <li>Total Customers: <strong><?php echo $totalCustomers; ?></strong></li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h3>Quick Navigation</h3>
-<ul>
-    <li><a href="orders.php">Manage Orders</a></li>
-    <li><a href="logout.php">Logout</a></li>
-</ul>
+    <h3>Quick Navigation</h3>
+    <ul>
+        <li><a href="orders.php">Manage Orders</a></li>
+        <li><a href="logout.php">Logout</a></li>
+    </ul>
 
-<hr>
+    <hr>
 
-<!-- ===== Recent Orders ===== -->
-<h3>Recent Orders</h3>
+    <!-- ===== Recent Orders ===== -->
+    <h3>Today's Orders</h3>
 
-<?php if (count($recentOrders) > 0): ?>
-<table border="1" cellpadding="8">
-    <tr>
-        <th>Order ID</th>
-        <th>Customer</th>
-        <th>Mobile</th>
-        <th>Qty</th>
-        <th>Delivery Date</th>
-        <th>Status</th>
-        <th>Booking Date</th>
-    </tr>
+    <?php if (count($todaysOrders) > 0): ?>
+        <table border="1" cellpadding="8">
+            <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Mobile</th>
+                <th>Qty</th>
+                <th>Delivery Date</th>
+                <th>Status</th>
+                <th>Booking Date</th>
+            </tr>
 
-    <?php foreach ($recentOrders as $order): ?>
-    <tr>
-        <td><?php echo $order['id']; ?></td>
-        <td><?php echo htmlspecialchars($order['name']); ?></td>
-        <td><?php echo htmlspecialchars($order['mobile']); ?></td>
-        <td><?php echo $order['quantity']; ?></td>
-         <td><?php echo $order['delivery_date']; ?></td>
-        <td><?php echo ucfirst($order['status']); ?></td>
-        <td><?php echo $order['order_date']; ?></td>
-    </tr>
-    <?php endforeach; ?>
-</table>
-<?php else: ?>
-<p>No recent orders.</p>
-<?php endif; ?>
+            <?php foreach ($todaysOrders as $order): ?>
+                <tr>
+                    <td><?php echo $order['id']; ?></td>
+                    <td><?php echo htmlspecialchars($order['name']); ?></td>
+                    <td><?php echo htmlspecialchars($order['mobile']); ?></td>
+                    <td><?php echo $order['quantity']; ?></td>
+                    <td><?php echo date("d M Y", strtotime($order['delivery_date'])); ?></td>
+                    <td><?php echo ucfirst($order['status']); ?></td>
+                    <td><?php echo date("d M Y", strtotime($order['order_date'])); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php else: ?>
+        <p>No orders placed today.</p>
+    <?php endif; ?>
 
 </body>
+
 </html>

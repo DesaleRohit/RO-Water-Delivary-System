@@ -1,5 +1,6 @@
 <?php
 session_start();
+$pricePerCan = 20;
 if (!isset($_SESSION['admin_logged_in'])) {
     header("Location: login.php");
     exit;
@@ -66,6 +67,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <th>Quantity</th>
                 <th>Delivery Date</th>
                 <th>Status</th>
+                <th>Total Amount (₹)</th>
                 <th>Booking Date</th>
                 <th>Action</th>
             </tr>
@@ -73,20 +75,30 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php foreach ($orders as $order): ?>
                 <tr>
                     <td><?php echo $order['order_id']; ?></td>
+
                     <td><?php echo htmlspecialchars($order['name']); ?></td>
+
                     <td><?php echo htmlspecialchars($order['mobile']); ?></td>
+
                     <td><?php echo htmlspecialchars($order['address']); ?></td>
+
                     <td><?php echo $order['quantity']; ?></td>
-                    <td><?php echo ucfirst($order['delivery_date']); ?></td>
+
+                    <td><?php echo date("d M Y", strtotime($order['delivery_date'])); ?></td>
+
                     <td><?php echo ucfirst($order['status']); ?></td>
-                    <td><?php echo $order['order_date']; ?></td>
+
+                    <td>₹<?php echo ((int)$order['quantity']) * $pricePerCan; ?></td>
+
+                    <td><?php echo date("d M Y", strtotime($order['order_date'])); ?></td>
+
                     <td>
                         <?php if ($order['status'] === 'pending'): ?>
                             <a href="orders.php?deliver_id=<?php echo $order['order_id']; ?>">
                                 Mark as Delivered
                             </a>
                         <?php else: ?>
-                             Delivered
+                            Delivered
                         <?php endif; ?>
                     </td>
                 </tr>
