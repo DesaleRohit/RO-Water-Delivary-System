@@ -1,11 +1,17 @@
 <?php
+session_start();
 require_once __DIR__ . "/../app/config/database.php";
 
-$mobile = trim($_POST['mobile'] ?? '');
+if (isset($_POST['mobile'])) {
+    $_SESSION['track_mobile'] = trim($_POST['mobile']);
+}
+
+$mobile = $_SESSION['track_mobile'] ?? '';
 
 if ($mobile === '') {
     die("Mobile number is required.");
 }
+
 
 // Find customer by mobile
 $stmt = $conn->prepare("SELECT id, name FROM customers WHERE mobile = :mobile");
@@ -18,7 +24,7 @@ if (!$customer) {
 
 // Fetch orders for this customer
 $stmt = $conn->prepare(
-    "SELECT quantity, delivery_date, status, order_date
+    "SELECT id, quantity, delivery_date, status, order_date
      FROM orders
      WHERE customer_id = :cid
      ORDER BY order_date DESC"
@@ -49,14 +55,30 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <th>Delivery Date</th>
                 <th>Status</th>
                 <th>Order Date</th>
+                <th>Action</th>
             </tr>
 
             <?php foreach ($orders as $o): ?>
                 <tr>
                     <td><?php echo $o['quantity']; ?></td>
-                    <td><?php echo ucfirst($o['delivery_date']); ?></td>
+
+                    <td><?php echo date("d M Y", strtotime($o['delivery_date'])); ?></td>
+
                     <td><?php echo ucfirst($o['status']); ?></td>
-                    <td><?php echo $o['order_date']; ?></td>
+
+                    <td><?php echo date("d M Y, h:i A", strtotime($o['order_date'])); ?></td>
+
+                    <td>
+                        <?php if ($o['status'] === 'pending'): ?>
+                            <a href="cancel-order.php?order_id=<?php echo $o['id']; ?>"
+                                onclick="return confirm('Are you sure you want to cancel this order?');">
+                                Cancel Order
+                            </a>
+                        <?php else: ?>
+                            <?php echo ucfirst($o['status']); ?>
+                        <?php endif; ?>
+                    </td>
+
                 </tr>
             <?php endforeach; ?>
 
