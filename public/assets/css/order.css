@@ -1,0 +1,148 @@
+
+   /* ORDER PAGE STYLES */
+
+.order-section {
+    max-width: 480px;
+    margin: 60px auto;
+    padding: 30px 28px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.order-section h2 {
+    text-align: center;
+    margin-bottom: 22px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #111;
+    letter-spacing: 0.4px;
+}
+
+/* Error message */
+.error-message {
+    background: #ffecec;
+    color: #c62828;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+   /* FORM */
+
+.order-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-form label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.order-form input,
+.order-form textarea {
+    padding: 11px 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    outline: none;
+    transition: all 0.25s ease;
+    background: #fafafa;
+}
+
+.order-form textarea {
+    resize: none;
+    height: 90px;
+}
+
+/* Focus effect */
+.order-form input:focus,
+.order-form textarea:focus {
+    border-color: #000;
+    background: #fff;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+
+   /* BUTTON */
+
+
+.order-form button {
+    margin-top: 8px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.order-form button:hover {
+    background: #222;
+    transform: translateY(-1px);
+}
+
+.order-form button:active {
+    transform: scale(0.98);
+}
+
+
+   /* BACK LINK */
+
+
+.back {
+    display: block;
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+}
+
+.back:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+
+
+   /* ANIMATION */
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+   /* MOBILE RESPONSIVE */
+
+
+@media (max-width: 520px) {
+    .order-section {
+        margin: 40px 16px;
+        padding: 24px 20px;
+    }
+
+    .order-section h2 {
+        font-size: 21px;
+    }
+}

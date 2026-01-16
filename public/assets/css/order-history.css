@@ -1,0 +1,216 @@
+/* ==================================================
+   ORDER HISTORY PAGE – FULL STYLES
+================================================== */
+
+.order-history-section {
+    max-width: 1000px;
+    margin: 70px auto;
+    padding: 40px 36px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.45s ease-in-out;
+}
+
+/* Title */
+.order-history-section h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 12px;
+    color: #111;
+}
+
+/* Customer info */
+.order-history-section p {
+    text-align: center;
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 42px;
+    line-height: 1.7;
+}
+
+
+/* TABLE */
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+}
+
+/* Header */
+.order-table thead {
+    background: #000;
+    color: #fff;
+}
+
+.order-table th {
+    padding: 18px 16px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-align: center;
+}
+
+/* Body cells */
+.order-table td {
+    padding: 18px 16px;
+    text-align: center;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Row separation */
+.order-table tbody tr {
+    border-bottom: 1px solid #ededed;
+}
+
+.order-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Hover */
+.order-table tbody tr:hover {
+    background: #fafafa;
+}
+
+
+/* STATUS BADGES */
+
+.status {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: capitalize;
+    line-height: 1.4;
+}
+
+/* Status colors */
+.status.pending {
+    background: #fff4cc;
+    color: #8a6d00;
+}
+
+.status.delivered {
+    background: #e6f4ea;
+    color: #2e7d32;
+}
+
+.status.cancelled {
+    background: #fdecea;
+    color: #c62828;
+}
+
+
+/* ACTION LINKS */
+
+.order-table a {
+    color: #000;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.order-table a:hover {
+    text-decoration: underline;
+}
+
+
+/* BOTTOM ACTION LINKS */
+
+.history-actions {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+/* reuse back-link but enhance spacing */
+.history-actions .back-link {
+    padding: 10px 18px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    background: #fff;
+}
+
+/* hover effect */
+.history-actions .back-link:hover {
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+/* RESPONSIVE (MOBILE) */
+
+@media (max-width: 768px) {
+
+    .order-history-section {
+        margin: 40px 16px;
+        padding: 28px 22px;
+    }
+
+    .order-history-section h2 {
+        font-size: 24px;
+    }
+
+    .order-history-section p {
+        font-size: 14px;
+        margin-bottom: 28px;
+    }
+
+    /* Hide table header */
+    .order-table thead {
+        display: none;
+    }
+
+    .order-table,
+    .order-table tbody,
+    .order-table tr,
+    .order-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .order-table tr {
+        margin-bottom: 18px;
+        border: 1px solid #e0e0e0;
+        border-radius: 14px;
+        padding: 14px 10px;
+        background: #fff;
+    }
+
+    .order-table td {
+        padding: 10px 12px;
+        text-align: right;
+        position: relative;
+        font-size: 14px;
+    }
+
+    .order-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 12px;
+        font-weight: 600;
+        font-size: 11px;
+        color: #333;
+        text-transform: uppercase;
+    }
+
+    .history-actions {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .history-actions .back-link {
+        width: 100%;
+        max-width: 240px;
+        text-align: center;
+    }
+}

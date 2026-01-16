@@ -1,0 +1,120 @@
+
+   /* TRACK ORDER PAGE STYLES */
+
+
+.track-section {
+    max-width: 420px;
+    margin: 70px auto;
+    padding: 30px 26px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.5s ease-in-out;
+    text-align: center;
+}
+
+.track-section h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.track-section p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 26px;
+    line-height: 1.5;
+}
+
+
+   /* FORM */
+
+.track-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.track-form label {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.track-form input {
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.25s ease;
+    background: #fafafa;
+}
+
+/* Focus effect */
+.track-form input:focus {
+    border-color: #000;
+    background: #fff;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+/* ===============================
+   BUTTON
+================================ */
+
+.track-form button {
+    margin-top: 8px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.track-form button:hover {
+    background: #222;
+    transform: translateY(-1px);
+}
+
+.track-form button:active {
+    transform: scale(0.98);
+}
+
+/* ===============================
+   BACK LINK
+================================ */
+
+.back-link {
+    display: inline-block;
+    margin-top: 24px;
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================ */
+
+@media (max-width: 520px) {
+    .track-section {
+        margin: 50px 16px;
+        padding: 24px 20px;
+    }
+
+    .track-section h2 {
+        font-size: 21px;
+    }
+}

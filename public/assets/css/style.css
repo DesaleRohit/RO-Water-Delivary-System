@@ -127,7 +127,7 @@ section.light {
 
 .buttons a:hover {
     opacity: 0.85;
-    
+
 }
 
 /* ===== CARDS ===== */
@@ -159,10 +159,16 @@ section.light {
 
 /* ===== FOOTER ===== */
 footer {
-    background-color: #000;
-    color: #ccc;
+    margin-top: 40px;
+    padding: 24px 10px;
     text-align: center;
-    padding: 30px;
-    margin-top: 80px;
+    background: #000000;
+    color: #ffffff;
     font-size: 14px;
+}
+
+
+.main-container {
+    min-height: calc(100vh - 160px);
+    padding-bottom: 60px;
 }
