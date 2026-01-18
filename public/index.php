@@ -3,7 +3,7 @@
 $page = $_GET['page'] ?? 'home';
 
 // Allowed pages (security)
-$allowed_pages = ['home', 'order', 'track-order', 'order-success', 'order-history', 'cancel-order'];
+$allowed_pages = ['home', 'order', 'track-order', 'order-success', 'order-history', 'cancel-order', 'update-order'];
 ?>
 
 <?php include 'includes/header.php'; ?>

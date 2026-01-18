@@ -62,17 +62,27 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($orders as $o): ?>
                     <tr>
                         <td data-label="Quantity"><?= $o['quantity'] ?></td>
+
                         <td data-label="Delivery Date"><?= date("d M Y", strtotime($o['delivery_date'])) ?></td>
+
                         <td data-label="Status" class="status <?= htmlspecialchars($o['status']) ?>">
                             <?= ucfirst($o['status']) ?>
                         </td>
+
                         <td data-label="Order Date"><?= date("d M Y, h:i A", strtotime($o['order_date'])) ?></td>
+
                         <td data-label="Action">
                             <?php if ($o['status'] === 'pending'): ?>
+
+                                <a href="index.php?page=update-order&order_id=<?= $o['id'] ?>">
+                                    Update
+                                </a>
+                                &nbsp;|&nbsp;
                                 <a href="index.php?page=cancel-order&order_id=<?= $o['id'] ?>"
                                     onclick="return confirm('Are you sure you want to cancel this order?');">
                                     Cancel
                                 </a>
+
                             <?php else: ?>
                                 —
                             <?php endif; ?>

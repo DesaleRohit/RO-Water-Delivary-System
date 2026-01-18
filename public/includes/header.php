@@ -18,6 +18,7 @@ $page = $_GET['page'] ?? 'home';
         'track-order'    => 'track-order.css',
         'order-history'  => 'order-history.css',
         'order-success'  => 'order-success.css',
+        'update-order'   => 'order.css',
     ];
 
     if (isset($cssMap[$page])) {

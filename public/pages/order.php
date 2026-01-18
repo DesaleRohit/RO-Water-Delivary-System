@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $quantity      = (int) $_POST['quantity'];
     $delivery_date = $_POST['delivery_date'];
 
-    // Validation
+    /* Validation */
     if ($delivery_date < date('Y-m-d')) {
         $message = "Invalid delivery date selected.";
     } elseif ($name && $mobile && $address && $quantity > 0 && $delivery_date) {
@@ -20,14 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt = $conn->prepare(
             "SELECT id FROM customers WHERE mobile = :mobile"
         );
-        $stmt->bindParam(":mobile", $mobile);
-        $stmt->execute();
+        $stmt->execute([':mobile' => $mobile]);
         $customer = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($customer) {
             $customer_id = $customer['id'];
         } else {
-            /* 2️. Insert new customer */
+            /* 2. Insert new customer */
             $stmt = $conn->prepare(
                 "INSERT INTO customers (name, mobile, address)
                  VALUES (:name, :mobile, :address)"
@@ -41,18 +40,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $customer_id = $conn->lastInsertId();
         }
 
-        /* 3️. Insert order */
+        /* 3. Insert order WITH address */
         $stmt = $conn->prepare(
-            "INSERT INTO orders (customer_id, quantity, delivery_date, status)
-             VALUES (:customer_id, :quantity, :delivery_date, 'pending')"
+            "INSERT INTO orders (customer_id, quantity, delivery_date, address, status)
+             VALUES (:customer_id, :quantity, :delivery_date, :address, 'pending')"
         );
+
         $stmt->execute([
-            ':customer_id' => $customer_id,
-            ':quantity'    => $quantity,
-            ':delivery_date' => $delivery_date
+            ':customer_id'  => $customer_id,
+            ':quantity'     => $quantity,
+            ':delivery_date'=> $delivery_date,
+            ':address'      => $address
         ]);
 
-        /* 4️. Redirect INSIDE layout */
+        /* 4. Redirect */
         header("Location: index.php?page=order-success");
         exit;
     } else {
@@ -61,7 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-    <!-- Order Form -->
+<!-- ================= ORDER FORM ================= -->
+
 <section class="order-section">
     <h2>Order RO Water Can</h2>
 
@@ -89,5 +91,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <button type="submit">Place Order</button>
     </form>
 
-    <a href="index.php?page=home" class="back">← Back to Home</a>
+    <a href="index.php?page=home" class="back-link">← Back to Home</a>
 </section>

@@ -12,19 +12,21 @@ if (isset($_GET['deliver_id'])) {
     $orderId = (int) $_GET['deliver_id'];
 
     $stmt = $conn->prepare(
-        "UPDATE orders SET status = 'delivered' WHERE id = :id"
+        "UPDATE orders SET status = 'delivered' WHERE id = :id AND status = 'pending'"
     );
     $stmt->execute([':id' => $orderId]);
 
     header("Location: orders.php");
     exit;
 }
+
+// Fetch all orders
 $sql = "
     SELECT 
         orders.id AS order_id,
         customers.name,
         customers.mobile,
-        customers.address,
+        orders.address,
         orders.quantity,
         orders.delivery_date,
         orders.status,
