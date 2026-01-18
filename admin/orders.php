@@ -94,13 +94,26 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <td>
                         <?php if ($order['status'] === 'pending'): ?>
+
                             <a href="orders.php?deliver_id=<?php echo $order['order_id']; ?>">
                                 Mark as Delivered
                             </a>
-                        <?php else: ?>
+
+                        <?php elseif ($order['status'] === 'delivered'): ?>
+
                             Delivered
+
+                        <?php elseif ($order['status'] === 'cancelled'): ?>
+
+                            Cancelled
+
+                        <?php else: ?>
+
+                            —
+
                         <?php endif; ?>
                     </td>
+
                 </tr>
             <?php endforeach; ?>
 
