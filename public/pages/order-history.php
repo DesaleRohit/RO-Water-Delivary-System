@@ -47,6 +47,21 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <?php if ($orders): ?>
 
+        <?php if (!empty($_SESSION['order_update_success'])): ?>
+            <div class="success-message">
+                Order updated successfully.
+            </div>
+            <?php unset($_SESSION['order_update_success']); ?>
+        <?php endif; ?>
+
+        <?php if (!empty($_SESSION['order_cancel_success'])): ?>
+            <div class="success-message cancel">
+                Order cancelled successfully.
+            </div>
+            <?php unset($_SESSION['order_cancel_success']); ?>
+        <?php endif; ?>
+
+
         <table class="order-table">
             <thead>
                 <tr>
