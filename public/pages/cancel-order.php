@@ -48,5 +48,6 @@ $stmt = $conn->prepare("
 $stmt->execute([':id' => $orderId]);
 
 /* Redirect back */
+$_SESSION['order_cancel_success'] = true;
 header("Location: index.php?page=order-history");
 exit;

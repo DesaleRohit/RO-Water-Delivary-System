@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         // Redirect back
-
+        $_SESSION['order_update_success'] = true;
         header("Location: index.php?page=order-history");
         exit;
     }
