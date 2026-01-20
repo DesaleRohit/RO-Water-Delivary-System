@@ -172,3 +172,17 @@ footer {
     min-height: calc(100vh - 160px);
     padding-bottom: 60px;
 }
+
+.field-error {
+    color: #c62828;
+    font-size: 12px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    display: block;
+    text-align: center;
+}
+
+.input-error {
+    border-color: #c62828 !important;
+    background: #fff5f5;
+}
