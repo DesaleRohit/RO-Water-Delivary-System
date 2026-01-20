@@ -129,4 +129,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    const messages = document.querySelectorAll(".success-message");
+
+    messages.forEach(msg => {
+        setTimeout(() => {
+            msg.classList.add("hide");
+
+            // Remove from DOM after animation
+            setTimeout(() => {
+                msg.remove();
+            }, 500);
+
+        }, 3000); // 3 seconds visible
+    });
+
 });
