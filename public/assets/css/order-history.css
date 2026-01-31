@@ -151,6 +151,10 @@
 
 @media (max-width: 768px) {
 
+    .order-table td[data-label="Status"] {
+        text-align: center;
+    }
+
     .order-history-section {
         margin: 40px 16px;
         padding: 28px 22px;
@@ -245,4 +249,11 @@
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 
+}
+
+/* Desktop */
+.order-table td[data-label="Status"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
