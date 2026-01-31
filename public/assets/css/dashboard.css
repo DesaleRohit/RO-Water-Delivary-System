@@ -1,0 +1,175 @@
+/* ==============================
+    ADMIN DASHBOARD CSS
+   ============================== */
+
+:root {
+    --bg: #fafafa;
+    --card-bg: #ffffff;
+    --text: #111111;
+    --muted: #666666;
+    --border: #e5e5e5;
+}
+
+/* Base */
+body {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 24px;
+}
+
+/* Headings */
+h2 {
+    margin-bottom: 4px;
+    font-size: 26px;
+}
+
+h3 {
+    margin: 32px 0 14px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Welcome text */
+p {
+    margin: 0 0 20px;
+    color: var(--muted);
+}
+
+/* ===== Summary Cards ===== */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 900px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+ul li {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 14px;
+}
+
+ul li strong {
+    font-size: 20px;
+}
+
+/* ===== Table ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+table th,
+table td {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 14px;
+}
+
+table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+}
+
+table td {
+    border-bottom: 1px solid var(--border);
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status text */
+td:nth-child(6) {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Empty state */
+.no-data {
+    font-style: italic;
+    color: var(--muted);
+}
+
+/* Divider */
+hr {
+    margin: 40px 0;
+    border: none;
+    height: 1px;
+    background-color: var(--border);
+}
+
+/* ==============================
+   ADMIN NAVBAR
+   ============================== */
+
+.admin-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #ffffff;
+    padding: 14px 24px;
+
+    border-radius: 12px;
+    margin-bottom: 30px;
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* Brand */
+.admin-nav .brand {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111111;
+}
+
+/* Links */
+.admin-nav .nav-right {
+    display: flex;
+    gap: 20px;
+}
+
+.admin-nav .nav-link {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555555;
+    padding: 6px 4px;
+    transition: color 0.2s ease;
+}
+
+.admin-nav .nav-link:hover {
+    color: #111111;
+}
+
+/* Logout emphasis */
+.admin-nav .logout {
+    color: #b91c1c;
+}
+
+.admin-nav .logout:hover {
+    color: #7f1d1d;
+}
