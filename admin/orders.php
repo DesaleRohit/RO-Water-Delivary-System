@@ -1,18 +1,19 @@
 <?php
-session_start();
+require_once 'includes/header.php';
+require_once 'includes/navbar.php';
+
 $pricePerCan = 20;
-if (!isset($_SESSION['admin_logged_in'])) {
-    header("Location: login.php");
-    exit;
-}
+
 require_once __DIR__ . "/../app/config/database.php";
 
-//Handle status update
+// Handle status update (Mark as Delivered)
 if (isset($_GET['deliver_id'])) {
     $orderId = (int) $_GET['deliver_id'];
 
     $stmt = $conn->prepare(
-        "UPDATE orders SET status = 'delivered' WHERE id = :id AND status = 'pending'"
+        "UPDATE orders 
+         SET status = 'delivered' 
+         WHERE id = :id AND status = 'pending'"
     );
     $stmt->execute([':id' => $orderId]);
 
@@ -41,90 +42,82 @@ $stmt->execute();
 $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html>
+<h2>All Customer Orders</h2>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Admin | View Orders</title>
-</head>
+<?php if (!empty($orders)): ?>
 
-<body>
+    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+        <tr>
+            <th>Order ID</th>
+            <th>Customer Name</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>Quantity</th>
+            <th>Delivery Date</th>
+            <th>Status</th>
+            <th>Total Amount (₹)</th>
+            <th>Booking Date</th>
+            <th>Action</th>
+        </tr>
 
-    <h2>All Customer Orders</h2>
-
-    <a href="dashboard.php">Back to Website</a> <br><br>
-    <a href="logout.php">Logout</a>
-
-    <br><br>
-
-    <?php if (count($orders) > 0): ?>
-
-        <table border="1" cellpadding="10">
+        <?php foreach ($orders as $order): ?>
             <tr>
-                <th>Order ID</th>
-                <th>Customer Name</th>
-                <th>Mobile</th>
-                <th>Address</th>
-                <th>Quantity</th>
-                <th>Delivery Date</th>
-                <th>Status</th>
-                <th>Total Amount (₹)</th>
-                <th>Booking Date</th>
-                <th>Action</th>
+                <td><?php echo $order['order_id']; ?></td>
+
+                <td><?php echo htmlspecialchars($order['name']); ?></td>
+
+                <td><?php echo htmlspecialchars($order['mobile']); ?></td>
+
+                <td><?php echo htmlspecialchars($order['address']); ?></td>
+
+                <td><?php echo $order['quantity']; ?></td>
+
+                <td><?php echo date("d M Y", strtotime($order['delivery_date'])); ?></td>
+
+                <td>
+                    <span class="status-<?php echo $order['status']; ?>">
+                        <?php echo ucfirst($order['status']); ?>
+                    </span>
+                </td>
+
+                <td>
+                    ₹<?php echo ((int)$order['quantity']) * $pricePerCan; ?>
+                </td>
+
+                <td><?php echo date("d M Y", strtotime($order['order_date'])); ?></td>
+
+                <td>
+                    <?php if ($order['status'] === 'pending'): ?>
+
+                      <a class="action-link" href="orders.php?deliver_id=<?php echo $order['order_id']; ?>">
+
+                          <span class="status-text">Delivered</span>
+
+                        </a>
+
+                    <?php elseif ($order['status'] === 'delivered'): ?>
+
+                        Delivered
+
+                    <?php elseif ($order['status'] === 'cancelled'): ?>
+
+                        Cancelled
+
+                    <?php else: ?>
+
+                        —
+
+                    <?php endif; ?>
+                </td>
             </tr>
+        <?php endforeach; ?>
 
-            <?php foreach ($orders as $order): ?>
-                <tr>
-                    <td><?php echo $order['order_id']; ?></td>
+    </table>
 
-                    <td><?php echo htmlspecialchars($order['name']); ?></td>
+<?php else: ?>
+    <p class="no-data">No orders found.</p>
+<?php endif; ?>
 
-                    <td><?php echo htmlspecialchars($order['mobile']); ?></td>
-
-                    <td><?php echo htmlspecialchars($order['address']); ?></td>
-
-                    <td><?php echo $order['quantity']; ?></td>
-
-                    <td><?php echo date("d M Y", strtotime($order['delivery_date'])); ?></td>
-
-                    <td><?php echo ucfirst($order['status']); ?></td>
-
-                    <td>₹<?php echo ((int)$order['quantity']) * $pricePerCan; ?></td>
-
-                    <td><?php echo date("d M Y", strtotime($order['order_date'])); ?></td>
-
-                    <td>
-                        <?php if ($order['status'] === 'pending'): ?>
-
-                            <a href="orders.php?deliver_id=<?php echo $order['order_id']; ?>">
-                                Mark as Delivered
-                            </a>
-
-                        <?php elseif ($order['status'] === 'delivered'): ?>
-
-                            Delivered
-
-                        <?php elseif ($order['status'] === 'cancelled'): ?>
-
-                            Cancelled
-
-                        <?php else: ?>
-
-                            —
-
-                        <?php endif; ?>
-                    </td>
-
-                </tr>
-            <?php endforeach; ?>
-
-        </table>
-
-    <?php else: ?>
-        <p>No orders found.</p>
-    <?php endif; ?>
-
-</body>
-
-</html>
+<?php
+require_once 'includes/footer.php';
+?>
