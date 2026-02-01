@@ -173,3 +173,48 @@ hr {
 .admin-nav .logout:hover {
     color: #7f1d1d;
 }
+
+
+/* ==============================
+   DASHBOARD ANALYTICS
+   ============================== */
+
+.analytics-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+    margin-top: 10px;
+}
+
+.analytics-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.analytics-card .label {
+    font-size: 13px;
+    color: #6b6b6b;
+    font-weight: 600;
+}
+
+.analytics-card .value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #111111;
+}
+
+/* Highlight card */
+.analytics-card.highlight {
+    background: #111111;
+}
+
+.analytics-card.highlight .label,
+.analytics-card.highlight .value {
+    color: #ffffff;
+}
