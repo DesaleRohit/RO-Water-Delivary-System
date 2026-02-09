@@ -1,0 +1,115 @@
+   /* ADMIN LOGIN PAGE */
+
+   :root {
+       --bg: #fafafa;
+       --card-bg: #ffffff;
+       --text: #111111;
+       --muted: #6b6b6b;
+       --border: #e5e5e5;
+       --error: #b91c1c;
+   }
+
+   body {
+       margin: 0;
+       font-family: "Inter", system-ui, -apple-system, sans-serif;
+       background-color: var(--bg);
+       color: var(--text);
+
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       height: 100vh;
+   }
+
+   /* Login Card */
+   .login-card {
+       width: 100%;
+       max-width: 380px;
+       background: var(--card-bg);
+       padding: 28px 30px;
+       border-radius: 14px;
+       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+   }
+
+   /* Title */
+   .login-card h2 {
+       margin: 0 0 6px;
+       font-size: 24px;
+       text-align: center;
+   }
+
+   .login-card .subtitle {
+       margin-bottom: 22px;
+       color: var(--muted);
+       font-size: 14px;
+       text-align: center;
+   }
+
+   /* Error */
+   .error {
+       background: #fef2f2;
+       color: var(--error);
+       padding: 10px 12px;
+       border-radius: 8px;
+       font-size: 13px;
+       margin-bottom: 14px;
+
+       text-align: center;
+       /* ✅ CENTER TEXT */
+   }
+
+   /* Form */
+   .login-card form {
+       display: flex;
+       flex-direction: column;
+       gap: 14px;
+   }
+
+   .login-card label {
+       font-size: 13px;
+       font-weight: 600;
+   }
+
+   .login-card input {
+       padding: 10px 12px;
+       border-radius: 8px;
+       border: 1px solid var(--border);
+       font-size: 14px;
+   }
+
+   .login-card input:focus {
+       outline: none;
+       border-color: #111111;
+   }
+
+   /* Button */
+   .login-card button {
+       margin-top: 10px;
+       padding: 12px;
+       border-radius: 8px;
+       border: none;
+       background-color: #111111;
+       color: #ffffff;
+       font-size: 14px;
+       font-weight: 600;
+       cursor: pointer;
+       transition: opacity 0.2s ease;
+   }
+
+   .login-card button:hover {
+       opacity: 0.9;
+   }
+
+   /* Footer text */
+   .login-footer {
+       text-align: center;
+       margin-top: 16px;
+       font-size: 12px;
+       color: var(--muted);
+   }
+
+   /* Fade-out animation for error */
+   .error.fade-out {
+       opacity: 0;
+       transition: opacity 0.6s ease;
+   }

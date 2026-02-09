@@ -143,4 +143,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000); // 3 seconds visible
     });
 
+    //Admin login error msg 
+    const errorBox = document.querySelector(".error");
+
+    if (errorBox) {
+        setTimeout(() => {
+            errorBox.classList.add("fade-out");
+        }, 2000); // start fade after 2.5s
+
+        setTimeout(() => {
+            errorBox.style.display = "none";
+        }, 3200); // fully hide after fade
+    }
 });
