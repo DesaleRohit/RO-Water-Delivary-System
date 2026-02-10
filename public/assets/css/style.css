@@ -195,3 +195,117 @@ footer {
     opacity: 0;
     transform: translateY(-6px);
 }
+
+/* =========================================
+   HOME PAGE ANIMATIONS (SUBTLE & MODERN)
+========================================= */
+
+/* HERO ANIMATION */
+.hero {
+    animation: heroFade 0.9s ease-out forwards;
+}
+
+.hero h1 {
+    animation: slideDown 0.8s ease-out forwards;
+}
+
+.hero p {
+    animation: fadeUp 0.9s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+/* BUTTON HOVER EFFECT */
+.buttons a {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.buttons a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+/* CARD HOVER EFFECT */
+.box {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* SECTION FADE-IN */
+section {
+    animation: fadeSection 0.8s ease-out both;
+}
+
+/* STAGGER EFFECT FOR CARDS */
+.features .box:nth-child(1),
+.steps .box:nth-child(1) {
+    animation: fadeUp 0.6s ease forwards;
+}
+
+.features .box:nth-child(2),
+.steps .box:nth-child(2) {
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: 0.12s;
+}
+
+.features .box:nth-child(3),
+.steps .box:nth-child(3) {
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: 0.24s;
+}
+
+/* =============================
+   KEYFRAMES
+============================= */
+
+@keyframes heroFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSection {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.nav-container .Logout {
+    color: #b91c1c;
+}

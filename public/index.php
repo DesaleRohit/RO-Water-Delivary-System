@@ -1,9 +1,17 @@
 <?php
-// Default page
 $page = $_GET['page'] ?? 'home';
 
-// Allowed pages (security)
-$allowed_pages = ['home', 'order', 'track-order', 'order-success', 'order-history', 'cancel-order', 'update-order'];
+$allowed_pages = [
+    'home',
+    'login',
+    'register',
+    'logout',
+    'order',
+    'order-success',
+    'order-history',
+    'update-order',
+    'cancel-order'
+];
 ?>
 
 <?php include 'includes/header.php'; ?>

@@ -1,8 +1,10 @@
 <?php
-session_start();
+require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../../app/config/database.php';
 
-// Validate order_id
+
+//    VALIDATE ORDER ID
+
 
 if (!isset($_GET['order_id'])) {
     echo "<p class='error-message'>Invalid request.</p>";
@@ -10,38 +12,28 @@ if (!isset($_GET['order_id'])) {
 }
 
 $orderId = (int) $_GET['order_id'];
+$customerId = $_SESSION['customer_id'];
 
-// Validate customer session
 
-$mobile = $_SESSION['track_mobile'] ?? '';
-if ($mobile === '') {
-    echo "<p class='error-message'>Session expired. Please track again.</p>";
-    return;
-}
+//    FETCH ORDER (OWNERSHIP + STATUS CHECK)
 
-// Fetch order + ownership check
 
 $stmt = $conn->prepare(
-    "SELECT 
-        orders.id,
-        orders.quantity,
-        orders.delivery_date,
-        orders.address,
-        orders.status
+    "SELECT id, quantity, delivery_date, address, status
      FROM orders
-     JOIN customers ON orders.customer_id = customers.id
-     WHERE orders.id = :oid
-       AND customers.mobile = :mobile"
+     WHERE id = :oid
+       AND customer_id = :cid"
 );
 
 $stmt->execute([
-    ':oid'    => $orderId,
-    ':mobile' => $mobile
+    ':oid' => $orderId,
+    ':cid' => $customerId
 ]);
 
 $order = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Validate order
+//    VALIDATIONS
+
 
 if (!$order) {
     echo "<p class='error-message'>Order not found.</p>";
@@ -53,7 +45,8 @@ if ($order['status'] !== 'pending') {
     return;
 }
 
-// Handle update submission
+
+//    HANDLE UPDATE
 
 $message = "";
 
@@ -71,27 +64,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = "Delivery address is required.";
     } else {
 
-
-        // Update order (SAFE)
-
         $stmt = $conn->prepare(
             "UPDATE orders
              SET quantity = :qty,
                  delivery_date = :dd,
                  address = :addr
              WHERE id = :oid
+               AND customer_id = :cid
                AND status = 'pending'"
         );
 
         $stmt->execute([
-            ':qty'  => $quantity,
-            ':dd'   => $delivery_date,
+            ':qty' => $quantity,
+            ':dd'  => $delivery_date,
             ':addr' => $address,
-            ':oid'  => $orderId
+            ':oid' => $orderId,
+            ':cid' => $customerId
         ]);
 
-
-        // Redirect back
         $_SESSION['order_update_success'] = true;
         header("Location: index.php?page=order-history");
         exit;

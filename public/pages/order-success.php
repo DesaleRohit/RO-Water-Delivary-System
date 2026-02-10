@@ -6,6 +6,6 @@
 
     <div class="success-actions">
         <a href="index.php?page=home" class="btn-primary">Back to Home</a>
-        <a href="index.php?page=track-order" class="btn-secondary">Track Order</a>
+        <a href="index.php?page=order-history" class="btn-secondary">Check order history</a>
     </div>
 </section>
