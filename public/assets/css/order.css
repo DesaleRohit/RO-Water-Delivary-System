@@ -1,5 +1,6 @@
-
-   /* ORDER PAGE STYLES */
+/* ===============================
+   ORDER PAGE STYLES
+================================ */
 
 .order-section {
     max-width: 480px;
@@ -17,7 +18,6 @@
     font-size: 24px;
     font-weight: 600;
     color: #111;
-    letter-spacing: 0.4px;
 }
 
 /* Error message */
@@ -31,8 +31,9 @@
     text-align: center;
 }
 
-
-   /* FORM */
+/* ===============================
+   FORM
+================================ */
 
 .order-form {
     display: flex;
@@ -54,8 +55,8 @@
     border-radius: 8px;
     margin-bottom: 18px;
     outline: none;
-    transition: all 0.25s ease;
     background: #fafafa;
+    transition: all 0.25s ease;
 }
 
 .order-form textarea {
@@ -63,7 +64,7 @@
     height: 90px;
 }
 
-/* Focus effect */
+/* Focus */
 .order-form input:focus,
 .order-form textarea:focus {
     border-color: #000;
@@ -71,9 +72,9 @@
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
 }
 
-
-   /* BUTTON */
-
+/* ===============================
+   BUTTON
+================================ */
 
 .order-form button {
     margin-top: 8px;
@@ -93,15 +94,11 @@
     transform: translateY(-1px);
 }
 
-.order-form button:active {
-    transform: scale(0.98);
-}
+/* ===============================
+   BACK LINK
+================================ */
 
-
-   /* BACK LINK */
-
-
-.back-link{
+.back-link {
     display: block;
     text-align: center;
     margin-top: 24px;
@@ -110,15 +107,14 @@
     text-decoration: none;
 }
 
-.back:hover {
+.back-link:hover {
     color: #000;
     text-decoration: underline;
 }
 
-
-
-   /* ANIMATION */
-
+/* ===============================
+   ANIMATION
+================================ */
 
 @keyframes fadeIn {
     from {
@@ -132,9 +128,9 @@
     }
 }
 
-
-   /* MOBILE RESPONSIVE */
-
+/* ===============================
+   MOBILE
+================================ */
 
 @media (max-width: 520px) {
     .order-section {

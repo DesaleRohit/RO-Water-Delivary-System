@@ -15,10 +15,11 @@ $page = $_GET['page'] ?? 'home';
     <?php
     $cssMap = [
         'order'          => 'order.css',
-        'track-order'    => 'track-order.css',
         'order-history'  => 'order-history.css',
         'order-success'  => 'order-success.css',
         'update-order'   => 'order.css',
+        'login'          => 'login-and-register.css',
+        'register'       => 'login-and-register.css',
     ];
 
     if (isset($cssMap[$page])) {
