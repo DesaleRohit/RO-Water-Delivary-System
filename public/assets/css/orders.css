@@ -1,125 +1,263 @@
-/* ==============================
-     ADMIN ORDERS CSS
-   ============================== */
-
 :root {
-    --bg: #fafafa;
-    --card-bg: #ffffff;
-    --text: #111111;
-    --muted: #6b6b6b;
-    --border: #e6e6e6;
-
-    --pending-bg: #fff7e6;
-    --pending-text: #b45309;
-
-    --delivered-bg: #ecfdf3;
-    --delivered-text: #047857;
-
-    --cancelled-bg: #fef2f2;
-    --cancelled-text: #b91c1c;
+    --black: #000000;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --radius: 0.75rem;
 }
 
-/* Page title */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--gray-50);
+    color: var(--gray-900);
+    line-height: 1.6;
+}
+
+/* ===== Container ===== */
+.admin-main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+/* ===== Navbar ===== */
+.admin-nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: -0.02em;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--gray-600);
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--gray-900);
+}
+
+.nav-link.active {
+    color: var(--black);
+    border-bottom-color: var(--black);
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-left: 1rem;
+    border-left: 1px solid var(--gray-200);
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+.logout-link {
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.logout-link:hover {
+    color: var(--gray-900);
+}
+
+/* ===== Footer ===== */
+.admin-footer {
+    background: var(--white);
+    border-top: 1px solid var(--gray-200);
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--gray-600);
+    font-size: 0.875rem;
+}
+
+/* ===== Typography ===== */
 h2 {
-    margin-bottom: 18px;
-    font-size: 24px;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    color: var(--gray-900);
 }
 
-/* ===== Table Wrapper ===== */
+h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem;
+    color: var(--gray-800);
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: var(--gray-200);
+    margin: 2rem 0;
+}
+
+/* ===== Tables ===== */
+.table-responsive {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
-    background: var(--card-bg);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    background: var(--white);
+    font-size: 0.9rem;
 }
 
-/* Table head */
-table th {
-    background-color: #f7f7f7;
-    text-align: left;
+th {
+    background: var(--gray-100);
     font-weight: 600;
-    font-size: 13px;
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
+    padding: 1rem;
+    text-align: left;
+    white-space: nowrap;
 }
 
-/* Table body */
-table td {
-    padding: 14px 16px;
-    font-size: 14px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
+td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+    vertical-align: middle;
 }
 
-table tr:last-child td {
+tr:last-child td {
     border-bottom: none;
 }
 
-/* ===== Status Badges ===== */
-.status-pending,
-.status-delivered,
-.status-cancelled {
+tr:hover td {
+    background-color: var(--gray-50);
+}
+
+/* Status badges (colored) */
+.status-badge {
     display: inline-block;
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: 12px;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: capitalize;
 }
 
 .status-pending {
-    background-color: var(--pending-bg);
-    color: var(--pending-text);
+    background: #fef3c7;
+    color: #92400e;
 }
 
 .status-delivered {
-    background-color: var(--delivered-bg);
-    color: var(--delivered-text);
+    background: #d1fae5;
+    color: #065f46;
 }
 
 .status-cancelled {
-    background-color: var(--cancelled-bg);
-    color: var(--cancelled-text);
+    background: #fee2e2;
+    color: #b91c1c;
 }
 
-/* ===== Action Button ===== */
+/* Action button */
 .action-link {
     display: inline-block;
-    padding: 7px 14px;
-    border-radius: 6px;
-    font-size: 13px;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
     font-weight: 600;
     text-decoration: none;
-    border: 1px solid var(--border);
-    color: var(--text);
-    background-color: #ffffff;
-    transition: all 0.2s ease;
+    background: var(--gray-100);
+    color: var(--gray-700);
+    transition: all 0.2s;
+    border: 1px solid var(--gray-200);
 }
 
 .action-link:hover {
-    background-color: var(--text);
-    color: #ffffff;
-    border-color: var(--text);
-}
-
-/* Delivered / Cancelled text */
-.status-text {
-    font-weight: 600;
-    color: var(--muted);
+    background: var(--gray-900);
+    color: var(--white);
+    border-color: var(--gray-900);
 }
 
 /* Empty state */
 .no-data {
+    padding: 2rem;
+    text-align: center;
+    color: var(--gray-600);
     font-style: italic;
-    color: var(--muted);
-    margin-top: 10px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-    table {
-        font-size: 13px;
+/* ===== Responsive tweaks ===== */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .user-menu {
+        padding-left: 0;
+        border-left: none;
+    }
+
+    th,
+    td {
+        padding: 0.75rem;
     }
 }

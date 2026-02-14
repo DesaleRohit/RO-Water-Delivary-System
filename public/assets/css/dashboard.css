@@ -1,220 +1,257 @@
-/* ==============================
-    ADMIN DASHBOARD CSS
-   ============================== */
-
 :root {
-    --bg: #fafafa;
-    --card-bg: #ffffff;
-    --text: #111111;
-    --muted: #666666;
-    --border: #e5e5e5;
+    --black: #000000;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --radius: 0.75rem;
 }
 
-/* Base */
-body {
-    font-family: "Inter", system-ui, -apple-system, sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
+* {
     margin: 0;
-    padding: 24px;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Headings */
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--gray-50);
+    color: var(--gray-900);
+    line-height: 1.6;
+}
+
+/* ===== Container ===== */
+.admin-main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+/* ===== Navbar ===== */
+.admin-nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: -0.02em;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--gray-600);
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--gray-900);
+}
+
+.nav-link.active {
+    color: var(--black);
+    border-bottom-color: var(--black);
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-left: 1rem;
+    border-left: 1px solid var(--gray-200);
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+.logout-link {
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.logout-link:hover {
+    color: var(--gray-900);
+}
+
+/* ===== Footer ===== */
+.admin-footer {
+    background: var(--white);
+    border-top: 1px solid var(--gray-200);
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--gray-600);
+    font-size: 0.875rem;
+}
+
+/* ===== Typography ===== */
 h2 {
-    margin-bottom: 4px;
-    font-size: 26px;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    color: var(--gray-900);
 }
 
 h3 {
-    margin: 32px 0 14px;
-    font-size: 18px;
+    font-size: 1.25rem;
     font-weight: 600;
+    margin: 2rem 0 1rem;
+    color: var(--gray-800);
 }
 
-/* Welcome text */
-p {
-    margin: 0 0 20px;
-    color: var(--muted);
-}
-
-/* ===== Summary Cards ===== */
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-width: 900px;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-}
-
-ul li {
-    background: var(--card-bg);
-    border-radius: 10px;
-    padding: 16px 18px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    font-size: 14px;
-}
-
-ul li strong {
-    font-size: 20px;
-}
-
-/* ===== Table ===== */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--card-bg);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-}
-
-table th,
-table td {
-    padding: 14px 16px;
-    text-align: left;
-    font-size: 14px;
-}
-
-table th {
-    background-color: #f5f5f5;
-    font-weight: 600;
-    border-bottom: 1px solid var(--border);
-}
-
-table td {
-    border-bottom: 1px solid var(--border);
-}
-
-table tr:last-child td {
-    border-bottom: none;
-}
-
-/* Status text */
-td:nth-child(6) {
-    font-weight: 600;
-    text-transform: capitalize;
-}
-
-/* Empty state */
-.no-data {
-    font-style: italic;
-    color: var(--muted);
-}
-
-/* Divider */
 hr {
-    margin: 40px 0;
     border: none;
     height: 1px;
-    background-color: var(--border);
+    background: var(--gray-200);
+    margin: 2rem 0;
 }
 
-/* ==============================
-   ADMIN NAVBAR
-   ============================== */
-
-.admin-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background-color: #ffffff;
-    padding: 14px 24px;
-
-    border-radius: 12px;
-    margin-bottom: 30px;
-
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-}
-
-/* Brand */
-.admin-nav .brand {
-    font-size: 16px;
-    font-weight: 700;
-    color: #111111;
-}
-
-/* Links */
-.admin-nav .nav-right {
-    display: flex;
-    gap: 20px;
-}
-
-.admin-nav .nav-link {
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    color: #555555;
-    padding: 6px 4px;
-    transition: color 0.2s ease;
-}
-
-.admin-nav .nav-link:hover {
-    color: #111111;
-}
-
-/* Logout emphasis */
-.admin-nav .logout {
-    color: #b91c1c;
-}
-
-.admin-nav .logout:hover {
-    color: #7f1d1d;
-}
-
-
-/* ==============================
-   DASHBOARD ANALYTICS
-   ============================== */
-
-.analytics-cards {
+/* ===== Dashboard Summary Cards ===== */
+.summary-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 18px;
-    margin-top: 10px;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.summary-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.card-content h4 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-600);
+    margin-bottom: 0.25rem;
+}
+
+.card-content .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+/* ===== Analytics Cards ===== */
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
 }
 
 .analytics-card {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 18px 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-
+    background: var(--white);
+    padding: 1.25rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 0.5rem;
 }
 
 .analytics-card .label {
-    font-size: 13px;
-    color: #6b6b6b;
+    font-size: 0.75rem;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--gray-600);
 }
 
 .analytics-card .value {
-    font-size: 26px;
+    font-size: 1.75rem;
     font-weight: 700;
-    color: #111111;
+    color: var(--gray-900);
 }
 
-/* Highlight card */
 .analytics-card.highlight {
-    background: #111111;
+    background: var(--gray-900);
+    color: var(--white);
 }
 
 .analytics-card.highlight .label,
 .analytics-card.highlight .value {
-    color: #ffffff;
+    color: var(--white);
+}
+
+/* ===== Responsive tweaks ===== */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .user-menu {
+        padding-left: 0;
+        border-left: none;
+    }
+
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
