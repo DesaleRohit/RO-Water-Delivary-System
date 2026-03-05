@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="error-message"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
 
-    <form method="post" class="auth-form">
+    <form method="post" class="auth-form order-form">
 
         <label>Full Name</label>
         <input type="text" name="name" placeholder="Enter your name" required>
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="text" name="mobile" placeholder="Enter mobile number" required>
 
         <label>Password</label>
-        <input type="password" name="password" placeholder="Create password" required>
+        <input type="password" name="password" placeholder="Create password" maxlength="4" required>
 
         <button type="submit">Register</button>
     </form>

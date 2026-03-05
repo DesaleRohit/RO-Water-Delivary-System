@@ -121,21 +121,21 @@ $isLoggedIn = isset($_SESSION['customer_id']);
                 <p>"Absolutely hassle-free service. The water quality is excellent and deliveries are always on time."</p>
                 <div class="customer">
                     <strong>- Priya S.</strong>
-                    <span>Mumbai</span>
+                    <span>Shahada</span>
                 </div>
             </div>
             <div class="testimonial-card">
                 <p>"Great for our office. We order 20 cans weekly and the online tracking makes planning easy."</p>
                 <div class="customer">
                     <strong>- Rajesh K.</strong>
-                    <span>Pune</span>
+                    <span>Lonkheda</span>
                 </div>
             </div>
             <div class="testimonial-card">
                 <p>"The customer support is fantastic. They resolved a delivery issue within minutes."</p>
                 <div class="customer">
                     <strong>- Anjali M.</strong>
-                    <span>Nashik</span>
+                    <span>Lambola</span>
                 </div>
             </div>
         </div>

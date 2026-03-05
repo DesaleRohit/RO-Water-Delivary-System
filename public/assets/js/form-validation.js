@@ -73,6 +73,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
+        if (input.name === "password") {
+            if (!/^[0-9]{4}$/.test(input.value)) {
+                showError(input, "Password must be exactly 4 digits");
+                valid = false;
+            } else {
+                clearError(input);
+            }
+        }
+
         return valid;
     }
 
@@ -101,29 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (!valid) {
-                e.preventDefault();
-            }
-        });
-    });
-
-    //    TRACK ORDER FORM
-
-    document.querySelectorAll(".track-form").forEach(form => {
-
-        const mobile = form.querySelector("input[name='mobile']");
-        const submitBtn = form.querySelector("button");
-
-        mobile.addEventListener("blur", () => {
-            if (!isValidMobile(mobile.value)) {
-                showError(mobile, "Enter a valid 10-digit mobile number");
-            } else {
-                clearError(mobile);
-            }
-        });
-
-        form.addEventListener("submit", e => {
-            if (!isValidMobile(mobile.value)) {
-                showError(mobile, "Enter a valid 10-digit mobile number");
                 e.preventDefault();
             }
         });
