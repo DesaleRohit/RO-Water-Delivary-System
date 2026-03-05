@@ -37,10 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <h2>Order Water Can</h2>
 
-    <?php if ($message): ?>
-        <p class="error-message"><?= htmlspecialchars($message) ?></p>
-    <?php endif; ?>
-
     <form method="post" class="order-form">
 
         <label>Delivery Address</label>

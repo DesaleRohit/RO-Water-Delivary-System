@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="error-message"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
 
-    <form method="post" class="auth-form">
+    <form method="post" class="auth-form order-form">
 
         <label>Mobile Number</label>
         <input type="text" name="mobile" required>
