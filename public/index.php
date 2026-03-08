@@ -10,7 +10,9 @@ $allowed_pages = [
     'order-success',
     'order-history',
     'update-order',
-    'cancel-order'
+    'cancel-order',
+    'contact',
+    'invoice'
 ];
 ?>
 

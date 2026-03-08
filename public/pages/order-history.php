@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../../app/config/database.php';
 
+$pricePerCan = 20;
+
 $customerId = $_SESSION['customer_id'];
 
 $stmt = $conn->prepare(
@@ -41,6 +43,8 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <th>Delivery Date</th>
                     <th>Status</th>
                     <th>Order Date</th>
+                    <th>Total Price</th>
+                    <th>Invoice</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -48,6 +52,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <tbody>
                 <?php foreach ($orders as $o): ?>
                     <tr>
+                        <?php $totalPrice = $o['quantity'] * $pricePerCan; ?>
 
                         <td data-label="Quantity">
                             <?php echo $o['quantity']; ?>
@@ -67,19 +72,45 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php echo date("d M Y", strtotime($o['order_date'])); ?>
                         </td>
 
+                        <td data-label="Total Price">
+                            ₹<?php echo $totalPrice; ?>
+                        </td>
+
+                        <td data-label="Invoice">
+
+                            <a href="index.php?page=invoice&order_id=<?php echo $o['id']; ?>"
+                                class="invoice-link"
+                                title="Download Invoice">
+
+                                <i class="fa-solid fa-download"></i>
+
+                            </a>
+
+                        </td>
+
                         <td data-label="Action">
+
                             <?php if ($o['status'] === 'pending'): ?>
+
                                 <a href="index.php?page=update-order&order_id=<?php echo $o['id']; ?>">
                                     Update
                                 </a>
+
                                 &nbsp;|&nbsp;
+
                                 <a href="index.php?page=cancel-order&order_id=<?php echo $o['id']; ?>"
                                     onclick="return confirm('Are you sure you want to cancel this order?');">
+
                                     Cancel
+
                                 </a>
+
                             <?php else: ?>
+
                                 —
+
                             <?php endif; ?>
+
                         </td>
 
                     </tr>

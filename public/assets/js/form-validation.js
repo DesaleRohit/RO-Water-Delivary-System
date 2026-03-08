@@ -141,4 +141,39 @@ document.addEventListener("DOMContentLoaded", () => {
             errorBox.style.display = "none";
         }, 3200); // fully hide after fade
     }
+
+    //BackTop button
+    const backToTopBtn = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 300) { // Show after scrolling 300px
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', function () {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    const successMsg = document.getElementById('successMsg');
+    if (successMsg) {
+        setTimeout(() => {
+            successMsg.style.transition = 'opacity 0.5s ease';
+            successMsg.style.opacity = '0';
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 500);
+        }, 3000);
+    }
+
+    // Optional: Clear form after successful submission (if you want)
+    // Check if success message exists and then reset form
+    if (successMsg) {
+        document.getElementById('contactForm').reset();
+    }
 });

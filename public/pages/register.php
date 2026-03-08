@@ -10,24 +10,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($name === '' || $mobile === '' || $password === '') {
         $error = "All fields are required";
+    } elseif (strlen($password) < 4) {
+        $error = "Password must be at least 4 characters";
     } else {
         // Check if mobile already exists
-        $check = $conn->prepare(
-            "SELECT id FROM customers WHERE mobile = :mobile"
-        );
+        $check = $conn->prepare("SELECT id FROM customers WHERE mobile = :mobile");
         $check->execute([':mobile' => $mobile]);
 
         if ($check->rowCount() > 0) {
             $error = "Mobile number already registered";
         } else {
-            $stmt = $conn->prepare(
-                "INSERT INTO customers (name, mobile, password)
-                 VALUES (:name, :mobile, :password)"
-            );
+            // Store password as plain text (original behavior)
+            $stmt = $conn->prepare("INSERT INTO customers (name, mobile, password) VALUES (:name, :mobile, :password)");
             $stmt->execute([
                 ':name'     => $name,
                 ':mobile'   => $mobile,
-                ':password' => $password
+                ':password' => $password // plain text
             ]);
 
             header("Location: index.php?page=login");
@@ -38,33 +36,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <section class="auth-section">
+    <div class="auth-container">
+        <h2>Create Account</h2>
+        <p class="auth-subtitle">Register to start ordering RO water cans online</p>
 
-    <h2>Create Account</h2>
-    <p class="auth-subtitle">
-        Register to start ordering RO water cans online.
-    </p>
+        <?php if ($error): ?>
+            <div class="error-message"><?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
 
-    <?php if ($error): ?>
-        <div class="error-message"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
+        <form method="post" class="auth-form order-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
 
-    <form method="post" class="auth-form order-form">
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="text" id="mobile" name="mobile" placeholder="Enter mobile number" required>
+            </div>
 
-        <label>Full Name</label>
-        <input type="text" name="name" placeholder="Enter your name" required>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Create password" minlength="4" required>
+                <small class="input-hint">Minimum 4 characters</small>
+            </div>
 
-        <label>Mobile Number</label>
-        <input type="text" name="mobile" placeholder="Enter mobile number" required>
+            <button type="submit" class="btn-submit">Register</button>
+        </form>
 
-        <label>Password</label>
-        <input type="password" name="password" placeholder="Create password" maxlength="4" required>
-
-        <button type="submit">Register</button>
-    </form>
-
-    <p class="auth-footer">
-        Already have an account?
-        <a href="index.php?page=login">Login</a>
-    </p>
-
+        <p class="auth-footer">
+            Already have an account?
+            <a href="index.php?page=login">Login</a>
+        </p>
+    </div>
 </section>
