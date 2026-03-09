@@ -2,138 +2,154 @@
 $isLoggedIn = isset($_SESSION['customer_id']);
 ?>
 
-<header class="hero">
-    <h1>RO Water Delivery System</h1>
-    <p>
-        Simple, reliable and affordable RO water can delivery
-        designed for homes, offices and small businesses.
-    </p>
-
-    <div class="buttons">
-        <?php if (!$isLoggedIn): ?>
-            <a href="index.php?page=login">Login to Order</a>
-            <a href="index.php?page=register" class="secondary">Create Account</a>
-        <?php else: ?>
-            <a href="index.php?page=order">Order Water Can</a>
-            <a href="index.php?page=order-history" class="secondary">My Orders</a>
-        <?php endif; ?>
-    </div>
-</header>
-
-<!-- ABOUT -->
-<section id="about">
-    <h2>About the System</h2>
-    <p>
-        RO Water Delivery System is a web-based application that allows
-        customers to place water can orders online and track their delivery
-        status in real time.
-    </p>
-
-    <p class="highlight">
-        The system simplifies order management for users and helps
-        administrators manage daily deliveries efficiently.
-    </p>
-</section>
-
-<!-- WHY CHOOSE -->
-<section id="why" class="light">
-    <h2>Why Use This Platform?</h2>
-
-    <div class="features">
-        <div class="box">
-            <h3>💧 Safe Drinking Water</h3>
-            <p>
-                Water is purified using RO filtration to ensure safety
-                and quality for daily consumption.
-            </p>
-        </div>
-
-        <div class="box">
-            <h3>📦 Easy Ordering</h3>
-            <p>
-                Place an order in seconds by selecting quantity and
-                delivery date from your dashboard.
-            </p>
-        </div>
-
-        <div class="box">
-            <h3>📊 Order Tracking</h3>
-            <p>
-                Logged-in users can view order history, update or cancel
-                pending orders anytime.
-            </p>
+<!-- Hero Section  -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Pure Water,<br>Delivered to Your Doorstep</h1>
+        <p class="hero-subtitle">
+            Fresh, purified RO water cans delivered on time, every time.
+            Simple online ordering for homes and offices.
+        </p>
+        <div class="hero-buttons">
+            <?php if (!$isLoggedIn): ?>
+                <a href="index.php?page=login" class="btn btn-primary">Login to Order</a>
+                <a href="index.php?page=register" class="btn btn-outline">Create Account</a>
+            <?php else: ?>
+                <a href="index.php?page=order" class="btn btn-primary">Order Water Can</a>
+                <a href="index.php?page=order-history" class="btn btn-outline">My Orders</a>
+            <?php endif; ?>
         </div>
     </div>
 </section>
 
-<!-- WHO CAN USE -->
-<section>
-    <h2>Who Is This For?</h2>
+<!-- Stats Section -->
+<section class="stats">
+    <div class="stat-item">
+        <span class="stat-number">10K+</span>
+        <span class="stat-label">Deliveries</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">5K+</span>
+        <span class="stat-label">Happy Customers</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">24/7</span>
+        <span class="stat-label">Support</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Safe Water</span>
+    </div>
+</section>
 
-    <div class="features">
-        <div class="box">
-            <h3>🏠 Residential Users</h3>
-            <p>
-                Ideal for families who need regular RO water delivery
-                at their homes.
-            </p>
-        </div>
+<!-- About Section -->
+<section id="about" class="about">
+    <div class="container">
+        <h2 class="section-title">About the System</h2>
+        <p class="section-description">
+            RO Water Delivery System is a web-based platform that connects customers with
+            reliable RO water can delivery services. Order online, track in real-time,
+            and enjoy fresh water at your convenience.
+        </p>
+    </div>
+</section>
 
-        <div class="box">
-            <h3>🏢 Offices & Shops</h3>
-            <p>
-                Suitable for offices, shops and small workplaces
-                requiring clean drinking water.
-            </p>
-        </div>
-
-        <div class="box">
-            <h3>🎉 Occasional Orders</h3>
-            <p>
-                Useful for events, meetings or temporary requirements
-                with flexible order quantities.
-            </p>
+<!-- Why Choose Us -->
+<section id="why" class="why-us">
+    <div class="container">
+        <h2 class="section-title">Why Choose Us?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💧</div>
+                <h3>Safe Drinking Water</h3>
+                <p>Multi-stage RO purification ensures the highest quality water for your health.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Easy Ordering</h3>
+                <p>Place orders in seconds via our web app. Schedule deliveries at your convenience.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h3>Real-Time Tracking</h3>
+                <p>Track your order status from confirmation to delivery with live updates.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3>Flexible Payment</h3>
+                <p>Pay online or via cash on delivery - whatever suits you best.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how" class="light">
-    <h2>How It Works</h2>
-
-    <div class="steps">
-        <div class="box">
-            <h3>1️⃣ Login</h3>
-            <p>
-                Users create an account and log in to access
-                the ordering system.
-            </p>
-        </div>
-
-        <div class="box">
-            <h3>2️⃣ Place Order</h3>
-            <p>
-                Select number of water cans, delivery date and
-                delivery address.
-            </p>
-        </div>
-
-        <div class="box">
-            <h3>3️⃣ Delivery & Tracking</h3>
-            <p>
-                Admin processes the order and users can track
-                delivery status from their account.
-            </p>
+<!-- How It Works -->
+<section id="how" class="how-it-works">
+    <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Create Account</h3>
+                <p>Sign up with your details and verify your mobile number.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Place Order</h3>
+                <p>Select quantity, delivery date, and address. Confirm your order.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Get Delivery</h3>
+                <p>Our partner delivers the cans to your doorstep on the scheduled date.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Enjoy & Repeat</h3>
+                <p>Track, reorder, or manage your subscriptions from your dashboard.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-    <h2>Contact Information</h2>
-    <p>
-        📍 Location: Maharashtra, India<br>
-        📞 Phone: +91 9XXXXXXXXX<br>
-        📧 Email: roservice@example.com
-    </p>
+<!-- Testimonials -->
+<section class="testimonials">
+    <div class="container">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>"Absolutely hassle-free service. The water quality is excellent and deliveries are always on time."</p>
+                <div class="customer">
+                    <strong>- Priya S.</strong>
+                    <span>Shahada</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Great for our office. We order 20 cans weekly and the online tracking makes planning easy."</p>
+                <div class="customer">
+                    <strong>- Rajesh K.</strong>
+                    <span>Lonkheda</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"The customer support is fantastic. They resolved a delivery issue within minutes."</p>
+                <div class="customer">
+                    <strong>- Anjali M.</strong>
+                    <span>Lambola</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-details">
+            <p><span>📍</span> Maharashtra, India</p>
+            <p><span>📞</span> +91 98765 43210</p>
+            <p><span>📧</span> roservice@example.com</p>
+        </div>
+    </div>
 </section>

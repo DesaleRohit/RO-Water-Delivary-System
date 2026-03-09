@@ -11,6 +11,8 @@ $page = $_GET['page'] ?? 'home';
     <!-- GLOBAL CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <!-- PAGE-SPECIFIC CSS -->
     <?php
     $cssMap = [
@@ -20,6 +22,9 @@ $page = $_GET['page'] ?? 'home';
         'update-order'   => 'order.css',
         'login'          => 'login-and-register.css',
         'register'       => 'login-and-register.css',
+        'contact'        => 'contact.css',
+        'invoice'        =>  'invoice.css',
+       
     ];
 
     if (isset($cssMap[$page])) {

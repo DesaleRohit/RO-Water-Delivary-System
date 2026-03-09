@@ -73,6 +73,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
+        if (input.name === "password") {
+            if (!/^[0-9]{4}$/.test(input.value)) {
+                showError(input, "Password must be exactly 4 digits");
+                valid = false;
+            } else {
+                clearError(input);
+            }
+        }
+
         return valid;
     }
 
@@ -106,29 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    //    TRACK ORDER FORM
-
-    document.querySelectorAll(".track-form").forEach(form => {
-
-        const mobile = form.querySelector("input[name='mobile']");
-        const submitBtn = form.querySelector("button");
-
-        mobile.addEventListener("blur", () => {
-            if (!isValidMobile(mobile.value)) {
-                showError(mobile, "Enter a valid 10-digit mobile number");
-            } else {
-                clearError(mobile);
-            }
-        });
-
-        form.addEventListener("submit", e => {
-            if (!isValidMobile(mobile.value)) {
-                showError(mobile, "Enter a valid 10-digit mobile number");
-                e.preventDefault();
-            }
-        });
-    });
-
     const messages = document.querySelectorAll(".success-message");
 
     messages.forEach(msg => {
@@ -155,4 +141,54 @@ document.addEventListener("DOMContentLoaded", () => {
             errorBox.style.display = "none";
         }, 3200); // fully hide after fade
     }
+
+    //BackTop button
+    const backToTopBtn = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 300) { // Show after scrolling 300px
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', function () {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    const successMsg = document.getElementById('successMsg');
+    if (successMsg) {
+        setTimeout(() => {
+            successMsg.style.transition = 'opacity 0.5s ease';
+            successMsg.style.opacity = '0';
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 500);
+        }, 3000);
+    }
+
+    // Optional: Clear form after successful submission (if you want)
+    // Check if success message exists and then reset form
+    if (successMsg) {
+        document.getElementById('contactForm').reset();
+    }
+
+    // Simple search
+    document.getElementById('messageSearch').addEventListener('keyup', function () {
+        let searchText = this.value.toLowerCase();
+        let rows = document.querySelectorAll('#messagesTable tbody tr');
+
+        rows.forEach(row => {
+            let text = row.textContent.toLowerCase();
+            if (text.includes(searchText)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
 });

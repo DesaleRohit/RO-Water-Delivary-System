@@ -26,8 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':dd'   => $deliveryDate,
             ':addr' => $address
         ]);
+        
+        $orderId = $conn->lastInsertId();
 
-        header("Location: index.php?page=order-success");
+        header("Location: index.php?page=order-success&order_id=" . $orderId);
         exit;
     }
 }
@@ -36,10 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <section class="order-section">
 
     <h2>Order Water Can</h2>
-
-    <?php if ($message): ?>
-        <p class="error-message"><?= htmlspecialchars($message) ?></p>
-    <?php endif; ?>
 
     <form method="post" class="order-form">
 

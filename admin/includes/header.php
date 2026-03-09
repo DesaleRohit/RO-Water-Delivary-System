@@ -1,5 +1,4 @@
 <?php
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,15 +8,17 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel | RO Water Delivery</title>
 
-    <link rel="stylesheet" href="../public/assets/css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="../public/assets/css/dashboard.css">
     <link rel="stylesheet" href="../public/assets/css/orders.css">
-
+    <link rel="stylesheet" href="../public/assets/css/messages.css">
 </head>
 
 <body>
-
-    <h1 style="margin:10px 0;">RO Water Delivery | Admin Panel</h1>
-    <hr>
