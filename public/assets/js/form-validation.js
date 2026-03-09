@@ -176,4 +176,19 @@ document.addEventListener("DOMContentLoaded", () => {
     if (successMsg) {
         document.getElementById('contactForm').reset();
     }
+
+    // Simple search
+    document.getElementById('messageSearch').addEventListener('keyup', function () {
+        let searchText = this.value.toLowerCase();
+        let rows = document.querySelectorAll('#messagesTable tbody tr');
+
+        rows.forEach(row => {
+            let text = row.textContent.toLowerCase();
+            if (text.includes(searchText)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
 });

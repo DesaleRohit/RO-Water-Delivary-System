@@ -16,7 +16,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
         <div class="nav-right">
             <a href="dashboard.php" class="nav-link <?= $current_page == 'dashboard.php' ? 'active' : '' ?>">Dashboard</a>
+
             <a href="orders.php" class="nav-link <?= $current_page == 'orders.php' ? 'active' : '' ?>">Orders</a>
+
+            <a href="customer-messages.php" class="nav-link <?= $current_page == 'customer-messages.php' ? 'active' : '' ?>">MSG</a>
+
             <div class="user-menu">
                 <span class="user-name"><?= htmlspecialchars($_SESSION['admin_username']) ?></span>
                 <a href="logout.php" class="logout-link" title="Logout">

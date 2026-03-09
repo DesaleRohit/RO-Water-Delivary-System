@@ -115,11 +115,11 @@ body {
 
 /* ===== Footer ===== */
 .admin-footer {
-    background: var(--white);
+    background: var(--black);
     border-top: 1px solid var(--gray-200);
     padding: 1.5rem;
     text-align: center;
-    color: var(--gray-600);
+    color: var(--white);
     font-size: 0.875rem;
 }
 
