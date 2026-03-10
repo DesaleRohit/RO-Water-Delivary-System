@@ -24,6 +24,7 @@ $page = $_GET['page'] ?? 'home';
         'register'       => 'login-and-register.css',
         'contact'        => 'contact.css',
         'invoice'        =>  'invoice.css',
+        'change-password' => 'change-password.css',
        
     ];
 

@@ -30,8 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return d.toISOString().split("T")[0];
     }
 
-    //    FIELD VALIDATION
-
+    // FIELD VALIDATION
     function validateField(input) {
         if (!input.name) return true;
 
@@ -85,81 +84,71 @@ document.addEventListener("DOMContentLoaded", () => {
         return valid;
     }
 
-    //    ORDER & UPDATE ORDER FORMS
-
+    // ORDER & UPDATE ORDER FORMS
     document.querySelectorAll(".order-form").forEach(form => {
-
-        const submitBtn = form.querySelector("button");
         const fields = form.querySelectorAll("input, textarea");
 
-        // Validate only the field user interacted with
         fields.forEach(field => {
             field.addEventListener("blur", () => {
                 validateField(field);
             });
         });
 
-        // Validate all on submit
         form.addEventListener("submit", e => {
             let valid = true;
-
             fields.forEach(field => {
                 if (!validateField(field)) {
                     valid = false;
                 }
             });
-
             if (!valid) {
                 e.preventDefault();
             }
         });
     });
 
+    // Success messages auto-hide
     const messages = document.querySelectorAll(".success-message");
-
     messages.forEach(msg => {
         setTimeout(() => {
             msg.classList.add("hide");
-
-            // Remove from DOM after animation
             setTimeout(() => {
                 msg.remove();
             }, 500);
-
-        }, 3000); // 3 seconds visible
+        }, 3000);
     });
 
-    //Admin login error msg 
+    // Admin login error msg
     const errorBox = document.querySelector(".error");
-
     if (errorBox) {
         setTimeout(() => {
             errorBox.classList.add("fade-out");
-        }, 2000); // start fade after 2.5s
-
+        }, 2000);
         setTimeout(() => {
             errorBox.style.display = "none";
-        }, 3200); // fully hide after fade
+        }, 3200);
     }
 
-    //BackTop button
+    // Back to Top button
     const backToTopBtn = document.getElementById('backToTop');
-
-    window.addEventListener('scroll', function () {
-        if (window.scrollY > 300) { // Show after scrolling 300px
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
-        }
-    });
-
-    backToTopBtn.addEventListener('click', function () {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (backToTopBtn) {
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
         });
-    });
 
+        backToTopBtn.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Contact form success message
     const successMsg = document.getElementById('successMsg');
     if (successMsg) {
         setTimeout(() => {
@@ -169,26 +158,33 @@ document.addEventListener("DOMContentLoaded", () => {
                 successMsg.style.display = 'none';
             }, 500);
         }, 3000);
+
+        // Optional: Clear contact form
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.reset();
+        }
     }
 
-    // Optional: Clear form after successful submission (if you want)
-    // Check if success message exists and then reset form
-    if (successMsg) {
-        document.getElementById('contactForm').reset();
-    }
+    // Password change form (if present)
+    const passwordForm = document.getElementById('passwordForm');
+    if (passwordForm) {
+        passwordForm.addEventListener("submit", function (e) {
+            let newPass = document.querySelector("[name='new_password']").value;
+            let confirmPass = document.querySelector("[name='confirm_password']").value;
+            let pattern = /^\d{4,8}$/;
 
-    // Simple search
-    document.getElementById('messageSearch').addEventListener('keyup', function () {
-        let searchText = this.value.toLowerCase();
-        let rows = document.querySelectorAll('#messagesTable tbody tr');
+            if (!pattern.test(newPass)) {
+                alert("Password must be 4 to 8 digits.");
+                e.preventDefault();
+                return;
+            }
 
-        rows.forEach(row => {
-            let text = row.textContent.toLowerCase();
-            if (text.includes(searchText)) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
+            if (newPass !== confirmPass) {
+                alert("Passwords do not match.");
+                e.preventDefault();
             }
         });
-    });
+    }
+
 });
