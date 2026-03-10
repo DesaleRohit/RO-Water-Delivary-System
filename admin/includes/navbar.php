@@ -1,22 +1,16 @@
 <?php
-if (!isset($_SESSION['admin_logged_in'])) {
-    header("Location: login.php");
-    exit;
-}
-$current_page = basename($_SERVER['PHP_SELF']);
+// No session check here – it's already done in index.php
+$current_page = $_GET['page'] ?? 'dashboard'; // read from query string
 ?>
 <aside class="admin-sidebar">
     <div class="sidebar-header">
         <span class="brand">🚰 RO Admin</span>
     </div>
     <nav class="sidebar-nav">
-        <a href="dashboard.php" class="nav-link <?= $current_page == 'dashboard.php' ? 'active' : '' ?>">Dashboard</a>
-
-        <a href="orders.php" class="nav-link <?= $current_page == 'orders.php' ? 'active' : '' ?>">Orders</a>
-
-        <a href="customer-messages.php" class="nav-link <?= $current_page == 'customer-messages.php' ? 'active' : '' ?>">Messages</a>
-
-        <a href="admin-change-password.php" class="nav-link <?= $current_page == 'admin-change-password.php' ? 'active' : '' ?>">Change Password</a>
+        <a href="index.php?page=dashboard" class="nav-link <?= $current_page == 'dashboard' ? 'active' : '' ?>">Dashboard</a>
+        <a href="index.php?page=orders" class="nav-link <?= $current_page == 'orders' ? 'active' : '' ?>">Orders</a>
+        <a href="index.php?page=messages" class="nav-link <?= $current_page == 'messages' ? 'active' : '' ?>">Messages</a>
+        <a href="index.php?page=change-password" class="nav-link <?= $current_page == 'change-password' ? 'active' : '' ?>">Change Password</a>
     </nav>
     <div class="sidebar-footer">
         <div class="user-info">

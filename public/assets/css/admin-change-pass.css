@@ -1,0 +1,59 @@
+h2 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+.change-password-form {
+    max-width: 500px;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+    margin: 2rem auto;
+    /* Center horizontally with auto left/right margins */
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+}
+
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input[type="password"]:focus {
+    outline: none;
+    border-color: var(--gray-900);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-submit {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.btn-submit:hover {
+    background: var(--gray-800);
+}
