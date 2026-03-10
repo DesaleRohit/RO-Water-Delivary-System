@@ -187,7 +187,3 @@ if (isset($conn) && $conn) {
         <p class="no-data">No deliveries scheduled for today.</p>
     <?php endif; ?>
 </main>
-
-<?php
-require_once 'includes/footer.php';
-?>

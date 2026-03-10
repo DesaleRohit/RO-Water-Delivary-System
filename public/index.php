@@ -12,7 +12,8 @@ $allowed_pages = [
     'update-order',
     'cancel-order',
     'contact',
-    'invoice'
+    'invoice',
+    'change-password'
 ];
 ?>
 

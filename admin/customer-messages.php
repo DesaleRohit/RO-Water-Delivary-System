@@ -17,14 +17,9 @@ $messageCount = count($messages);
         <div class="message-count">Total: <?php echo $messageCount; ?></div>
     </div>
 
-    <!-- Search Bar -->
-    <div class="search-bar">
-        <input type="text" id="messageSearch" placeholder="Search by name, mobile, subject or message..." class="search-input">
-    </div>
-
     <?php if ($messages): ?>
         <div class="table-responsive">
-            <table class="admin-table messages-table" id="messagesTable">
+            <table class="admin-table messages-table">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -54,11 +49,3 @@ $messageCount = count($messages);
         <div class="no-data">No messages found.</div>
     <?php endif; ?>
 </main>
-
-<script>
-
-</script>
-
-<?php
-require_once 'includes/footer.php';
-?>

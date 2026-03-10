@@ -19,6 +19,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="../public/assets/css/dashboard.css">
     <link rel="stylesheet" href="../public/assets/css/orders.css">
     <link rel="stylesheet" href="../public/assets/css/messages.css">
+    <link rel="stylesheet" href="../public/assets/css/admin-change-password.css">
 </head>
 
 <body>

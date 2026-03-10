@@ -69,5 +69,3 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <p class="no-data">No orders found.</p>
     <?php endif; ?>
 </main>
-
-<?php require_once 'includes/footer.php'; ?>

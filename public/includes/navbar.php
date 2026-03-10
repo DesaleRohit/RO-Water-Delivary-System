@@ -34,6 +34,7 @@ $current_page = $_GET['page'] ?? 'home';
                         <ul class="dropdown-menu">
                             <li><a href="index.php?page=order" class="<?= $current_page === 'order' ? 'active' : '' ?>">Order Water</a></li>
                             <li><a href="index.php?page=order-history" class="<?= $current_page === 'order-history' ? 'active' : '' ?>">Order History</a></li>
+                            <li><a href="index.php?page=change-password" class="<?= $current_page === 'change-password' ? 'active' : '' ?>">Change Password</a></li>
                             <li><a href="index.php?page=contact" class="<?= $current_page === 'contact' ? 'active' : '' ?>">Contact Us</a></li>
                             <li><a href="index.php?page=logout" class="logout-link">Logout</a></li>
                         </ul>
