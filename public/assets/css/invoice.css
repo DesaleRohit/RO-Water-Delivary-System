@@ -1,38 +1,41 @@
+/* ===== invoice.css – Enhanced UI ===== */
 :root {
-    --black: #000000;
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --accent: #38bdf8;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
     --white: #ffffff;
-    --gray-100: #f8f9fa;
-    --gray-200: #e9ecef;
-    --gray-300: #dee2e6;
-    --gray-400: #ced4da;
-    --gray-500: #adb5bd;
-    --gray-600: #6c757d;
-    --gray-700: #495057;
-    --gray-800: #343a40;
-    --gray-900: #212529;
-    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --radius: 0.5rem;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --radius: 1.5rem;
+    --radius-sm: 0.75rem;
+    --radius-pill: 9999px;
 }
 
+/* Page background */
+body {
+    background: var(--gray-50);
+}
 
-/* body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: var(--gray-100);
-    color: var(--gray-900);
-    line-height: 1.6;
-    padding: 2rem;
-} */
-
+/* ===== Invoice Container ===== */
 .invoice-container {
     max-width: 800px;
-    margin: 40px auto;
+    margin: 3rem auto;
     background: var(--white);
     padding: 2.5rem;
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-lg);
     animation: fadeIn 0.5s ease-out;
-    
 }
 
 @keyframes fadeIn {
@@ -47,7 +50,7 @@
     }
 }
 
-/* Header */
+/* ===== Header ===== */
 .invoice-header {
     display: flex;
     justify-content: space-between;
@@ -55,13 +58,13 @@
     gap: 2rem;
     margin-bottom: 2rem;
     padding-bottom: 1.5rem;
-    border-bottom: 2px solid var(--gray-300);
+    border-bottom: 2px solid var(--gray-200);
 }
 
 .company-details h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: var(--black);
+    color: var(--primary);
     margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
 }
@@ -77,117 +80,146 @@
 }
 
 .invoice-title h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    color: var(--black);
+    color: var(--gray-800);
     margin-bottom: 0.5rem;
     letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+}
+
+.invoice-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 2px;
 }
 
 .invoice-title p {
-    color: var(--gray-700);
+    color: var(--gray-600);
     font-size: 0.95rem;
     margin: 0.2rem 0;
 }
 
-/* Customer Details */
+.invoice-title p strong {
+    color: var(--gray-700);
+}
+
+/* ===== Customer Details ===== */
 .customer-details {
     margin-bottom: 2rem;
-    padding: 1rem;
-    background: var(--gray-100);
-    border-radius: var(--radius);
+    padding: 1.25rem;
+    background: linear-gradient(135deg, var(--gray-50), white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+.customer-details::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f007';
+    /* user icon */
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--primary);
+    opacity: 0.2;
+    font-size: 2rem;
 }
 
 .customer-details h3 {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--gray-700);
-    margin-bottom: 0.5rem;
+    color: var(--primary);
+    margin-bottom: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .customer-details p {
     margin: 0.25rem 0;
-    color: var(--gray-800);
+    color: var(--gray-700);
 }
 
 .customer-details strong {
-    color: var(--black);
+    color: var(--gray-900);
 }
 
-/* Invoice Items Table */
+/* ===== Invoice Items Table ===== */
 .invoice-items {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin: 2rem 0;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.invoice-items thead tr {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
 }
 
 .invoice-items th {
-    background: var(--gray-900);
-    color: var(--white);
-    padding: 0.75rem;
+    padding: 1rem;
     font-weight: 600;
+    color: white;
     text-align: left;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .invoice-items td {
-    padding: 0.75rem;
-    border-bottom: 1px solid var(--gray-300);
-    color: var(--gray-800);
+    padding: 1rem;
+    background: white;
+    color: var(--gray-700);
 }
 
-.invoice-items tr:last-child td {
-    border-bottom: none;
+.invoice-items tbody tr:nth-child(even) td {
+    background: var(--gray-50);
 }
 
-/* Summary */
+.invoice-items tbody tr:last-child td:first-child {
+    border-bottom-left-radius: var(--radius-sm);
+}
+
+.invoice-items tbody tr:last-child td:last-child {
+    border-bottom-right-radius: var(--radius-sm);
+}
+
+/* ===== Summary ===== */
 .invoice-summary {
     margin-top: 2rem;
     padding-top: 1rem;
-    border-top: 2px solid var(--gray-300);
+    border-top: 2px solid var(--gray-200);
     text-align: right;
 }
 
-.summary-row {
-    display: flex;
-    justify-content: flex-end;
-    gap: 2rem;
-    padding: 0.3rem 0;
+.invoice-summary p {
     font-size: 1rem;
-}
-
-.summary-row .label {
     color: var(--gray-600);
-    font-weight: 500;
+    margin: 0.3rem 0;
 }
 
-.summary-row .value {
-    color: var(--gray-900);
-    font-weight: 600;
-    min-width: 120px;
-    text-align: right;
-}
-
-.summary-row.total {
-    font-size: 1.3rem;
+.invoice-summary h3 {
+    font-size: 1.6rem;
     font-weight: 700;
-    border-top: 1px solid var(--gray-300);
+    color: var(--primary);
     margin-top: 0.5rem;
-    padding-top: 0.8rem;
 }
 
-.summary-row.total .value {
-    color: var(--black);
-}
-
-/* Footer */
+/* ===== Footer ===== */
 .invoice-footer {
     margin-top: 2.5rem;
     text-align: center;
-    color: var(--gray-600);
-    font-size: 0.85rem;
+    color: var(--gray-500);
+    font-size: 0.9rem;
     border-top: 1px solid var(--gray-200);
     padding-top: 1.5rem;
 }
@@ -196,7 +228,7 @@
     margin: 0.3rem 0;
 }
 
-/* Action Buttons */
+/* ===== Action Buttons ===== */
 .invoice-actions {
     display: flex;
     justify-content: center;
@@ -206,44 +238,62 @@
 
 .btn-print,
 .btn-back {
-    display: inline-block;
-    padding: 0.6rem 1.5rem;
-    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    border-radius: var(--radius-pill);
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
     border: 2px solid transparent;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    min-width: 160px;
 }
 
 .btn-print {
-    background: var(--black);
+    background: var(--primary);
     color: var(--white);
 }
 
+.btn-print::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f02f';
+    /* print */
+    font-size: 1rem;
+}
+
 .btn-print:hover {
-    background: var(--white);
-    color: var(--black);
-    border-color: var(--black);
+    background: var(--primary-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
 
 .btn-back {
     background: transparent;
-    color: var(--black);
-    border-color: var(--black);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-back::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f060';
+    /* arrow-left */
+    font-size: 1rem;
 }
 
 .btn-back:hover {
-    background: var(--black);
+    background: var(--primary);
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
 
-/* Print Styles */
+/* ===== Print Styles ===== */
 @media print {
     body {
         background: white;
@@ -253,6 +303,7 @@
     .invoice-container {
         box-shadow: none;
         padding: 1rem;
+        border: 1px solid var(--gray-200);
     }
 
     .invoice-actions {
@@ -262,15 +313,27 @@
     .invoice-header {
         border-bottom-color: #000;
     }
-}
 
-/* Responsive */
-@media (max-width: 600px) {
-    body {
-        padding: 1rem;
+    .customer-details {
+        border: 1px solid #000;
+        box-shadow: none;
     }
 
+    .invoice-items thead tr {
+        background: #000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .invoice-items th {
+        color: white !important;
+    }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
     .invoice-container {
+        margin: 1.5rem;
         padding: 1.5rem;
     }
 
@@ -283,14 +346,20 @@
         text-align: center;
     }
 
+    .invoice-title h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+    }
+
     .invoice-items th,
     .invoice-items td {
-        padding: 0.5rem;
+        padding: 0.75rem 0.5rem;
         font-size: 0.85rem;
     }
 
-    .summary-row {
-        gap: 1rem;
+    .invoice-summary {
+        text-align: center;
     }
 
     .invoice-actions {
@@ -302,7 +371,6 @@
     .btn-back {
         width: 100%;
         max-width: 280px;
-        text-align: center;
     }
 }
 

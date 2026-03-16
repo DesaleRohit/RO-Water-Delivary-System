@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <a href="index.php?page=order-history" class="back-link">
-        ← Back to Order History
+        Back to Order History
     </a>
 
 </section>

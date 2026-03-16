@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':dd'   => $deliveryDate,
             ':addr' => $address
         ]);
-        
+
         $orderId = $conn->lastInsertId();
 
         header("Location: index.php?page=order-success&order_id=" . $orderId);
@@ -53,6 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Place Order</button>
     </form>
 
-    <a href="index.php?page=home" class="back-link">← Back to Home</a>
+    <a href="index.php?page=home" class="back-link">Back to Home</a>
 
 </section>

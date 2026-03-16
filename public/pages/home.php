@@ -2,7 +2,7 @@
 $isLoggedIn = isset($_SESSION['customer_id']);
 ?>
 
-<!-- Hero Section  -->
+<!-- Hero Section -->
 <section class="hero">
     <div class="hero-content">
         <h1 class="hero-title">Pure Water,<br>Delivered to Your Doorstep</h1>
@@ -22,21 +22,25 @@ $isLoggedIn = isset($_SESSION['customer_id']);
     </div>
 </section>
 
-<!-- Stats Section -->
+<!-- Stats Section with icons -->
 <section class="stats">
     <div class="stat-item">
-        <span class="stat-number">10K+</span>
+        <i class="fas fa-truck"></i>
+        <span class="stat-number" data-target="10000">10K+</span>
         <span class="stat-label">Deliveries</span>
     </div>
     <div class="stat-item">
-        <span class="stat-number">5K+</span>
+        <i class="fas fa-smile"></i>
+        <span class="stat-number" data-target="5000">5K+</span>
         <span class="stat-label">Happy Customers</span>
     </div>
     <div class="stat-item">
+        <i class="fas fa-headset"></i>
         <span class="stat-number">24/7</span>
         <span class="stat-label">Support</span>
     </div>
     <div class="stat-item">
+        <i class="fas fa-check-circle"></i>
         <span class="stat-number">100%</span>
         <span class="stat-label">Safe Water</span>
     </div>
@@ -54,28 +58,28 @@ $isLoggedIn = isset($_SESSION['customer_id']);
     </div>
 </section>
 
-<!-- Why Choose Us -->
+<!-- Why Choose Us with icons -->
 <section id="why" class="why-us">
     <div class="container">
         <h2 class="section-title">Why Choose Us?</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">💧</div>
+                <div class="feature-icon"><i class="fas fa-water"></i></div>
                 <h3>Safe Drinking Water</h3>
                 <p>Multi-stage RO purification ensures the highest quality water for your health.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📱</div>
+                <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
                 <h3>Easy Ordering</h3>
                 <p>Place orders in seconds via our web app. Schedule deliveries at your convenience.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🚚</div>
+                <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
                 <h3>Real-Time Tracking</h3>
                 <p>Track your order status from confirmation to delivery with live updates.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">💳</div>
+                <div class="feature-icon"><i class="fas fa-credit-card"></i></div>
                 <h3>Flexible Payment</h3>
                 <p>Pay online or via cash on delivery - whatever suits you best.</p>
             </div>
@@ -83,7 +87,7 @@ $isLoggedIn = isset($_SESSION['customer_id']);
     </div>
 </section>
 
-<!-- How It Works -->
+<!-- How It Works with gradient numbers -->
 <section id="how" class="how-it-works">
     <div class="container">
         <h2 class="section-title">How It Works</h2>
@@ -112,12 +116,13 @@ $isLoggedIn = isset($_SESSION['customer_id']);
     </div>
 </section>
 
-<!-- Testimonials -->
+<!-- Testimonials with quote icon -->
 <section class="testimonials">
     <div class="container">
         <h2 class="section-title">What Our Customers Say</h2>
         <div class="testimonial-grid">
             <div class="testimonial-card">
+                <i class="fas fa-quote-left quote-icon"></i>
                 <p>"Absolutely hassle-free service. The water quality is excellent and deliveries are always on time."</p>
                 <div class="customer">
                     <strong>- Priya S.</strong>
@@ -125,6 +130,7 @@ $isLoggedIn = isset($_SESSION['customer_id']);
                 </div>
             </div>
             <div class="testimonial-card">
+                <i class="fas fa-quote-left quote-icon"></i>
                 <p>"Great for our office. We order 20 cans weekly and the online tracking makes planning easy."</p>
                 <div class="customer">
                     <strong>- Rajesh K.</strong>
@@ -132,6 +138,7 @@ $isLoggedIn = isset($_SESSION['customer_id']);
                 </div>
             </div>
             <div class="testimonial-card">
+                <i class="fas fa-quote-left quote-icon"></i>
                 <p>"The customer support is fantastic. They resolved a delivery issue within minutes."</p>
                 <div class="customer">
                     <strong>- Anjali M.</strong>
@@ -142,14 +149,14 @@ $isLoggedIn = isset($_SESSION['customer_id']);
     </div>
 </section>
 
-<!-- Contact Section -->
+<!-- Contact Section with icons -->
 <section id="contact" class="contact">
     <div class="container">
         <h2 class="section-title">Get in Touch</h2>
         <div class="contact-details">
-            <p><span>📍</span> Maharashtra, India</p>
-            <p><span>📞</span> +91 98765 43210</p>
-            <p><span>📧</span> roservice@example.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> Maharashtra, India</p>
+            <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+            <p><i class="fas fa-envelope"></i> roservice@example.com</p>
         </div>
     </div>
 </section>

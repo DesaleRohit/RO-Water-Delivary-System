@@ -1,21 +1,31 @@
+/* ===== order.css – Enhanced UI ===== */
 :root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --accent: #38bdf8;
     --black: #000000;
     --white: #ffffff;
-    --gray-100: #f8f9fa;
-    --gray-200: #e9ecef;
-    --gray-300: #dee2e6;
-    --gray-400: #ced4da;
-    --gray-500: #adb5bd;
-    --gray-600: #6c757d;
-    --gray-700: #495057;
-    --gray-800: #343a40;
-    --gray-900: #212529;
-    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --radius: 0.5rem;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --radius: 1rem;
+    --radius-sm: 0.5rem;
 }
 
-/* ===== Animations ===== */
+body {
+    background: var(--gray-50);
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -29,35 +39,48 @@
 }
 
 .order-section {
-    max-width: 500px;
-    margin: 60px auto;
-    padding: 2.5rem 2rem;
+    max-width: 520px;
+    margin: 3rem auto;
+    padding: 2.5rem;
     background: var(--white);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    animation: fadeIn 0.8s ease-out forwards;
+    box-shadow: var(--shadow-lg);
+    animation: fadeIn 0.6s ease-out forwards;
+    border: 1px solid var(--gray-200);
 }
 
 .order-section h2 {
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 700;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     text-align: center;
-    color: var(--black);
+    color: var(--gray-900);
     letter-spacing: -0.02em;
-    animation: fadeIn 0.8s ease-out forwards;
+    position: relative;
+    padding-bottom: 1rem;
 }
 
-/* Form elements staggered animation */
+.order-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 2px;
+}
+
 .order-form {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.5rem;
 }
 
 .order-form>* {
     opacity: 0;
-    animation: fadeIn 0.6s ease-out forwards;
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
 .order-form>*:nth-child(1) {
@@ -89,21 +112,44 @@
 }
 
 .order-form label {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--gray-700);
-    margin-bottom: 0.25rem;
-    display: block;
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.order-form label::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 1rem;
+    color: var(--primary);
+    width: 1.25rem;
+    display: inline-block;
+}
+
+.order-form label:nth-of-type(1)::before {
+    content: '\f3c5';
+}
+
+.order-form label:nth-of-type(2)::before {
+    content: '\f1b3';
+}
+
+.order-form label:nth-of-type(3)::before {
+    content: '\f073';
 }
 
 .order-form input,
 .order-form textarea,
 .order-form select {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--gray-300);
-    border-radius: var(--radius);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    font-family: 'Inter', sans-serif;
     font-size: 1rem;
     transition: all 0.2s ease;
     background: var(--white);
@@ -114,8 +160,8 @@
 .order-form textarea:focus,
 .order-form select:focus {
     outline: none;
-    border-color: var(--black);
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
 }
 
 .order-form textarea {
@@ -123,34 +169,71 @@
     resize: vertical;
 }
 
-/* Button styling (pill shape) */
+.order-form input::placeholder,
+.order-form textarea::placeholder,
+.order-form select::placeholder {
+    color: var(--gray-400);
+    font-weight: 400;
+    opacity: 1;
+}
+
 .order-form button {
-    background: var(--black);
+    background: var(--primary);
     color: var(--white);
     border: 2px solid transparent;
-    padding: 0.9rem 2rem;
-    font-size: 1rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     border-radius: 9999px;
     cursor: pointer;
     transition: all 0.3s ease;
     align-self: center;
-    min-width: 200px;
+    min-width: 220px;
     margin-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: var(--shadow);
+}
+
+.order-form button::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f058';
+    font-size: 1.2rem;
 }
 
 .order-form button:hover {
-    background: var(--white);
-    color: var(--black);
-    border-color: var(--black);
+    background: var(--primary-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
 
-/* Field error message */
+.order-form button:active {
+    transform: translateY(0);
+}
+
+/* ===== Back Link ===== */
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--gray-500);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    animation: fadeIn 0.5s ease-out 0.8s forwards;
+    opacity: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
 .field-error {
     color: #b91c1c;
-    /* keep red for errors */
     font-size: 0.8rem;
     margin-top: -0.5rem;
     margin-bottom: 0.5rem;
@@ -158,41 +241,32 @@
     animation: fadeIn 0.6s ease-out forwards;
 }
 
-/* Back link */
-.back-link {
-    display: block;
-    text-align: center;
-    margin-top: 2rem;
-    color: var(--gray-600);
-    text-decoration: none;
+.back-link::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f060';
     font-size: 0.9rem;
-    transition: color 0.2s;
-    animation: fadeIn 0.6s ease-out 0.8s forwards;
-    opacity: 0;
+    transition: transform 0.2s;
 }
 
 .back-link:hover {
-    color: var(--black);
-    text-decoration: underline;
+    color: var(--primary);
+    text-decoration: none;
 }
 
-/* Placeholder styling */
-.order-form input::placeholder,
-.order-form textarea::placeholder,
-.order-form select::placeholder {
-    color: var(--gray-500);
-    opacity: 1;
+.back-link:hover::before {
+    transform: translateX(-4px);
 }
 
-/* Responsive */
+/* ===== Responsive ===== */
 @media (max-width: 600px) {
     .order-section {
-        margin: 40px 20px;
+        margin: 2rem 1rem;
         padding: 2rem 1.5rem;
     }
 
     .order-section h2 {
-        font-size: 1.75rem;
+        font-size: 2rem;
     }
 
     .order-form button {
