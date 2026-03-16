@@ -1,19 +1,31 @@
+/* ===== order-success.css – Enhanced UI ===== */
 :root {
-    --black: #000000;
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --accent: #38bdf8;
+    --success: #10b981;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
     --white: #ffffff;
-    --gray-100: #f8f9fa;
-    --gray-200: #e9ecef;
-    --gray-300: #dee2e6;
-    --gray-400: #ced4da;
-    --gray-500: #adb5bd;
-    --gray-600: #6c757d;
-    --gray-700: #495057;
-    --gray-800: #343a40;
-    --gray-900: #212529;
-    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --radius: 1rem;
-    --radius-sm: 0.5rem;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --radius: 1.5rem;
+    --radius-sm: 0.75rem;
+    --radius-pill: 9999px;
+}
+
+/* Page background */
+body {
+    background: var(--gray-50);
 }
 
 /* ===== Animations ===== */
@@ -41,34 +53,44 @@
     }
 }
 
+/* ===== Success Section ===== */
 .success-section {
     max-width: 550px;
-    margin: 60px auto;
+    margin: 3rem auto;
     padding: 2.5rem 2rem;
     background: var(--white);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-lg);
     text-align: center;
-    animation: fadeIn 0.8s ease-out forwards;
+    animation: fadeIn 0.6s ease-out forwards;
 }
 
 .success-header {
     margin-bottom: 1.5rem;
-    animation: scaleIn 0.6s ease-out 0.2s both;
+    animation: scaleIn 0.5s ease-out 0.1s both;
 }
 
+/* Success icon – styled as a large circular checkmark */
 .success-icon {
-    display: block;
-    font-size: 4rem;
-    line-height: 1;
-    margin-bottom: 0.5rem;
-    color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    margin: 0 auto 1rem;
+    background: var(--primary);
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+    animation: scaleIn 0.4s ease-out;
 }
 
 .success-section h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--black);
+    color: var(--gray-900);
     letter-spacing: -0.02em;
     margin: 0;
 }
@@ -78,29 +100,30 @@
     color: var(--gray-600);
     margin-bottom: 2rem;
     line-height: 1.6;
-    animation: fadeIn 0.8s ease-out 0.3s forwards;
+    animation: fadeIn 0.5s ease-out 0.2s forwards;
     opacity: 0;
 }
 
 /* ===== Bill Box ===== */
 .bill-box {
-    background: var(--gray-100);
-    border: 1px solid var(--gray-300);
+    background: linear-gradient(135deg, var(--gray-50), white);
+    border: 1px solid var(--gray-200);
     border-radius: var(--radius-sm);
-    padding: 1.5rem 1.5rem;
+    padding: 1.5rem;
     margin-bottom: 2rem;
     text-align: left;
-    animation: fadeIn 0.8s ease-out 0.35s forwards;
+    box-shadow: var(--shadow);
+    animation: fadeIn 0.5s ease-out 0.25s forwards;
     opacity: 0;
 }
 
 .bill-box h3 {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    color: var(--black);
+    color: var(--gray-800);
     margin-bottom: 1.25rem;
     padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--gray-300);
+    border-bottom: 2px solid var(--gray-200);
     text-align: center;
 }
 
@@ -118,8 +141,7 @@
 
 .bill-row.total {
     font-weight: 700;
-    color: var(--black);
-    border-top: 1px solid var(--gray-300);
+    border-top: 2px solid var(--gray-200);
     border-bottom: none;
     margin-top: 0.5rem;
     padding-top: 1rem;
@@ -127,18 +149,18 @@
 }
 
 .bill-label {
-    color: var(--gray-700);
+    color: var(--gray-600);
     font-weight: 500;
 }
 
 .bill-value {
-    color: var(--gray-900);
+    color: var(--gray-800);
     font-weight: 600;
 }
 
 .total .bill-value {
-    color: var(--black);
-    font-size: 1.2rem;
+    color: var(--primary);
+    font-size: 1.3rem;
 }
 
 /* ===== Action Buttons ===== */
@@ -147,16 +169,18 @@
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
-    animation: fadeIn 0.8s ease-out 0.4s forwards;
+    animation: fadeIn 0.5s ease-out 0.3s forwards;
     opacity: 0;
 }
 
 .btn-primary,
 .btn-secondary {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     padding: 0.75rem 2rem;
-    border-radius: 9999px;
-    /* pill shape */
+    border-radius: var(--radius-pill);
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -167,26 +191,46 @@
 }
 
 .btn-primary {
-    background: var(--black);
+    background: var(--primary);
     color: var(--white);
 }
 
+.btn-primary::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f015';
+    /* home */
+    font-size: 1rem;
+}
+
 .btn-primary:hover {
-    background: var(--white);
-    color: var(--black);
-    border-color: var(--black);
+    background: var(--primary-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
     background: transparent;
-    color: var(--black);
-    border-color: var(--black);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-secondary::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+.btn-secondary:nth-of-type(1)::before {
+    content: '\f07a';
+}
+
+.btn-secondary:nth-of-type(2)::before {
+    content: '\f15c';
 }
 
 .btn-secondary:hover {
-    background: var(--black);
+    background: var(--primary);
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
@@ -195,7 +239,7 @@
 /* ===== Responsive ===== */
 @media (max-width: 600px) {
     .success-section {
-        margin: 40px 20px;
+        margin: 2rem 1rem;
         padding: 2rem 1.5rem;
     }
 
@@ -204,7 +248,9 @@
     }
 
     .success-icon {
-        font-size: 3rem;
+        width: 4rem;
+        height: 4rem;
+        font-size: 2rem;
     }
 
     .bill-box {

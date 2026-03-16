@@ -1,19 +1,31 @@
 :root {
-    --black: #000000;
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --accent: #38bdf8;
+    --success: #10b981;
+    --danger: #ef4444;
+    --danger-bg: #fee2e2;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
     --white: #ffffff;
-    --gray-100: #f8f9fa;
-    --gray-200: #e9ecef;
-    --gray-300: #dee2e6;
-    --gray-400: #ced4da;
-    --gray-500: #adb5bd;
-    --gray-600: #6c757d;
-    --gray-700: #495057;
-    --gray-800: #343a40;
-    --gray-900: #212529;
-    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --radius: 1rem;
-    --radius-sm: 0.5rem;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --radius: 1.5rem;
+    --radius-sm: 0.75rem;
+    --radius-pill: 9999px;
+}
+
+body {
+    background: var(--gray-50);
 }
 
 /* ===== Animation ===== */
@@ -29,6 +41,7 @@
     }
 }
 
+
 .auth-section {
     min-height: calc(100vh - 200px);
     display: flex;
@@ -42,9 +55,9 @@
     width: 100%;
     background: var(--white);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-lg);
     padding: 2.5rem 2rem;
-    animation: fadeIn 0.6s ease-out;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .auth-section h2 {
@@ -52,8 +65,22 @@
     font-weight: 700;
     margin-bottom: 0.5rem;
     text-align: center;
-    color: var(--black);
+    color: var(--gray-900);
     letter-spacing: -0.02em;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.auth-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 2px;
 }
 
 .auth-subtitle {
@@ -63,7 +90,6 @@
     margin-bottom: 2rem;
 }
 
-/* ===== Form ===== */
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -77,17 +103,41 @@
 }
 
 .form-group label {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--gray-700);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Icons for labels */
+.form-group label::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--primary);
+    width: 1.25rem;
+    display: inline-block;
+}
+
+.form-group label[for="name"]::before {
+    content: '\f007';
+}
+
+.form-group label[for="mobile"]::before {
+    content: '\f3cd';
+}
+
+.form-group label[for="password"]::before {
+    content: '\f023';
 }
 
 .form-group input {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--gray-300);
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--gray-200);
     border-radius: var(--radius-sm);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 1rem;
     transition: all 0.2s ease;
     background: var(--white);
@@ -96,12 +146,13 @@
 
 .form-group input:focus {
     outline: none;
-    border-color: var(--black);
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
 }
 
 .form-group input::placeholder {
     color: var(--gray-400);
+    font-weight: 400;
 }
 
 .input-hint {
@@ -110,40 +161,85 @@
     margin-top: 0.2rem;
 }
 
-/* ===== Button ===== */
 .btn-submit {
-    background: var(--black);
+    background: var(--primary);
     color: var(--white);
     border: 2px solid transparent;
-    padding: 0.85rem 1.5rem;
-    font-size: 1rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    border-radius: 9999px;
-    /* pill shape */
+    border-radius: var(--radius-pill);
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 0.5rem;
     width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-submit::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f090';
+    font-size: 1rem;
 }
 
 .btn-submit:hover {
-    background: var(--white);
-    color: var(--black);
-    border-color: var(--black);
+    background: var(--primary-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
 
-/* ===== Footer ===== */
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* ===== Error Message ===== */
+.error-message {
+    background: var(--danger-bg);
+    color: #991b1b;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-left: 4px solid var(--danger);
+}
+
+.error-message::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f06a';
+    /* exclamation-circle */
+    color: var(--danger);
+    font-size: 1rem;
+}
+
+.field-error {
+    color: #b91c1c;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
 .auth-footer {
     margin-top: 2rem;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--gray-600);
 }
 
 .auth-footer a {
-    color: var(--black);
+    color: var(--primary);
     font-weight: 600;
     text-decoration: none;
     border-bottom: 1px solid transparent;
@@ -151,31 +247,7 @@
 }
 
 .auth-footer a:hover {
-    border-bottom-color: var(--black);
-}
-
-/* ===== Error Message ===== */
-
-.field-error {
-    color: #b91c1c;
-    /* keep red for errors */
-    font-size: 0.8rem;
-    margin-top: -0.5rem;
-    margin-bottom: 0.5rem;
-    padding-left: 0.5rem;
-    animation: fadeIn 0.6s ease-out forwards;
-}
-
-.error-message {
-    background-color: #fee2e2;
-    color: #b91c1c;
-    padding: 0.75rem 1rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #fecaca;
-    animation: fadeIn 0.6s ease-out;
-    text-align: center;
+    border-bottom-color: var(--primary);
 }
 
 /* ===== Responsive ===== */
