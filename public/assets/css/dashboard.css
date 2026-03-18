@@ -1,20 +1,23 @@
 :root {
-    --black: #000000;
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --accent: #38bdf8;
     --white: #ffffff;
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-400: #9ca3af;
-    --gray-500: #6b7280;
-    --gray-600: #4b5563;
-    --gray-700: #374151;
-    --gray-800: #1f2937;
-    --gray-900: #111827;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-    --radius: 0.75rem;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --radius: 1rem;
+    --radius-sm: 0.75rem;
 }
 
 * {
@@ -25,7 +28,7 @@
 
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: var(--gray-50);
+    background: var(--gray-50);
     color: var(--gray-900);
     line-height: 1.6;
     display: flex;
@@ -46,6 +49,7 @@ body {
     align-self: flex-start;
     height: 100vh;
     z-index: 100;
+    box-shadow: var(--shadow-sm);
 }
 
 .sidebar-header {
@@ -56,8 +60,17 @@ body {
 .brand {
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--black);
+    color: var(--primary);
     letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--accent);
 }
 
 .sidebar-nav {
@@ -74,17 +87,56 @@ body {
     font-weight: 500;
     border-left: 3px solid transparent;
     transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
-.sidebar-nav .nav-link:hover {
-    background: var(--gray-100);
-    color: var(--gray-900);
+.sidebar-nav .nav-link i {
+    /* if icons are present in HTML? not currently, but we can add pseudo-elements */
+    width: 1.25rem;
 }
 
+/* Add icons via pseudo-elements */
+.sidebar-nav .nav-link[href*="dashboard"]::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f3fd';
+    /* dashboard */
+    width: 1.25rem;
+    color: var(--gray-500);
+}
+
+.sidebar-nav .nav-link[href*="orders"]::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f0ca';
+    /* list */
+}
+
+.sidebar-nav .nav-link[href*="messages"]::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f086';
+    /* comments */
+}
+
+.sidebar-nav .nav-link[href*="change-password"]::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f023';
+    /* lock */
+}
+
+.sidebar-nav .nav-link:hover,
 .sidebar-nav .nav-link.active {
     background: var(--gray-100);
-    color: var(--black);
-    border-left-color: var(--black);
+    color: var(--primary);
+    border-left-color: var(--primary);
+}
+
+.sidebar-nav .nav-link.active::before {
+    color: var(--primary);
 }
 
 .sidebar-footer {
@@ -110,10 +162,11 @@ body {
     align-items: center;
     transition: color 0.2s;
     text-decoration: none;
+    gap: 0.5rem;
 }
 
 .logout-link:hover {
-    color: var(--gray-900);
+    color: var(--primary);
 }
 
 /* ===== Main Content Area ===== */
@@ -121,17 +174,17 @@ body {
     flex: 1 1 500px;
     padding: 2rem 1.5rem;
     min-width: 0;
-    background-color: var(--gray-50);
+    background: var(--gray-50);
 }
 
 .admin-footer {
     flex: 0 0 100%;
-    background: var(--black);
+    background: var(--gray-900);
     color: var(--white);
     padding: 1.5rem;
     text-align: center;
     font-size: 0.875rem;
-    border-top: 1px solid var(--gray-200);
+    border-top: 1px solid var(--gray-700);
 }
 
 /* ===== Typography ===== */
@@ -141,6 +194,19 @@ h2 {
     letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
     color: var(--gray-900);
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 2px;
 }
 
 h3 {
@@ -174,23 +240,62 @@ hr {
     display: flex;
     align-items: center;
     gap: 1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.3s ease;
+    border: 1px solid var(--gray-200);
+    position: relative;
+    overflow: hidden;
 }
 
+.summary-card::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: var(--primary);
+    opacity: 0.1;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.summary-card:nth-child(1)::before {
+    content: '\f0c9';
+}
+
+/* total orders – bars */
+.summary-card:nth-child(2)::before {
+    content: '\f017';
+}
+
+/* pending – clock */
+.summary-card:nth-child(3)::before {
+    content: '\f00c';
+}
+
+/* delivered – check */
+.summary-card:nth-child(4)::before {
+    content: '\f007';
+}
+
+/* customers – user */
+
 .summary-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-md);
+    border-color: var(--primary);
 }
 
 .card-content h4 {
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--gray-600);
     margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
 }
 
 .card-content .value {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
     color: var(--gray-900);
 }
@@ -212,6 +317,14 @@ hr {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    border: 1px solid var(--gray-200);
+    transition: transform 0.2s;
+}
+
+.analytics-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
 }
 
 .analytics-card .label {
@@ -229,7 +342,7 @@ hr {
 }
 
 .analytics-card.highlight {
-    background: var(--gray-900);
+    background: var(--primary);
     color: var(--white);
 }
 
@@ -243,7 +356,7 @@ hr {
     overflow-x: auto;
     margin: 1.5rem 0;
     border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
 }
 
 table {
@@ -259,6 +372,8 @@ th {
     padding: 1rem;
     text-align: left;
     white-space: nowrap;
+    color: var(--gray-700);
+    border-bottom: 2px solid var(--gray-200);
 }
 
 td {
@@ -304,7 +419,7 @@ tr:hover td {
 .no-data {
     padding: 2rem;
     text-align: center;
-    color: var(--gray-600);
+    color: var(--gray-500);
     font-style: italic;
     background: var(--white);
     border-radius: var(--radius);
@@ -316,16 +431,34 @@ tr:hover td {
     background: #d1fae5;
     color: #065f46;
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-sm);
     margin-bottom: 1.5rem;
     border: 1px solid #a7f3d0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.success-message::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f058';
 }
 
 .error-message {
     background: #fee2e2;
     color: #b91c1c;
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-sm);
     margin-bottom: 1.5rem;
     border: 1px solid #fecaca;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.error-message::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f06a';
 }

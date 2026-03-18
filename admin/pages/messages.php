@@ -1,6 +1,18 @@
 <?php
 require_once __DIR__ . "/../../app/config/database.php";
 
+// Handle message deletion
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
+    $deleteId = filter_input(INPUT_POST, 'delete_id', FILTER_VALIDATE_INT);
+    if ($deleteId) {
+        $stmt = $conn->prepare("DELETE FROM contact_messages WHERE id = :id");
+        $stmt->execute([':id' => $deleteId]);
+    }
+    // Redirect to avoid form resubmission
+    header("Location: " . strtok($_SERVER["REQUEST_URI"], '?'));
+    exit;
+}
+
 // Fetch messages
 $stmt = $conn->prepare("SELECT * FROM contact_messages ORDER BY created_at DESC");
 $stmt->execute();
@@ -23,6 +35,7 @@ $messageCount = count($messages);
                     <th>Subject</th>
                     <th>Message</th>
                     <th>Date</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +49,14 @@ $messageCount = count($messages);
                             <span class="message-full"><?php echo htmlspecialchars($m['message']); ?></span>
                         </td>
                         <td data-label="Date"><?php echo date("d M Y", strtotime($m['created_at'])); ?></td>
+                        <td data-label="Action">
+                            <form method="post" class="delete-form" onsubmit="return confirm('Are you sure you want to delete this message?');">
+                                <input type="hidden" name="delete_id" value="<?php echo $m['id']; ?>">
+                                <button type="submit" class="delete-btn" title="Delete message">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

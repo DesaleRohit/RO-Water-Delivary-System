@@ -4,7 +4,7 @@ $current_page = $_GET['page'] ?? 'dashboard'; // read from query string
 ?>
 <aside class="admin-sidebar">
     <div class="sidebar-header">
-        <span class="brand">🚰 RO Admin</span>
+        <span class="brand"><i class="fas fa-droplet"></i>RO Admin</span>
     </div>
     <nav class="sidebar-nav">
         <a href="index.php?page=dashboard" class="nav-link <?= $current_page == 'dashboard' ? 'active' : '' ?>">Dashboard</a>
