@@ -22,6 +22,7 @@ $page = $_GET['page'] ?? 'home';
         'update-order'   => 'order.css',
         'login'          => 'login-and-register.css',
         'register'       => 'login-and-register.css',
+        'forgot-password' => 'login-and-register.css',
         'contact'        => 'contact.css',
         'invoice'        =>  'invoice.css',
         'change-password' => 'change-password.css',
