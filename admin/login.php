@@ -1,28 +1,22 @@
 <?php
 session_start();
 require_once __DIR__ . "/../app/config/database.php";
-
 $error = "";
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-
     $stmt = $conn->prepare(
         "SELECT * FROM admin_users WHERE username = :username AND password = :password"
     );
-
     $stmt->execute([
         ':username' => $username,
         ':password' => $password
     ]);
-
     $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-
     if ($admin) {
         $_SESSION['admin_logged_in'] = true;
         $_SESSION['admin_username'] = $admin['username'];
-        header("Location: dashboard.php");
+        header("Location: index.php?page=dashboard");
         exit;
     } else {
         $error = "Invalid username or password";
