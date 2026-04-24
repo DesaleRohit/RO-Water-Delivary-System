@@ -1,0 +1,343 @@
+/* =====================================================
+   customers.css  –  Customers List Page
+   ===================================================== */
+
+/* ── Page Header ─────────────────────────────────── */
+.customers-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.customers-header h2 {
+    margin: 0;
+    color: var(--gray-900);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.customers-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 2px;
+}
+
+.customer-count {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: var(--white);
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.customer-count::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f0c0';
+    font-size: 0.85rem;
+}
+
+/* ── Search Bar ──────────────────────────────────── */
+.search-bar {
+    margin: 1.5rem 0;
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-200);
+}
+
+.search-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.search-input {
+    flex: 2 1 250px;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    background: var(--white);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.status-filter {
+    flex: 1 1 150px;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius);
+    background: var(--white);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.status-filter:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.search-btn {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.search-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.clear-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--gray-200);
+    color: var(--gray-700);
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.clear-btn:hover {
+    background: var(--gray-300);
+    color: var(--gray-900);
+}
+
+/* ── Avatar Circle ───────────────────────────────── */
+.customer-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.avatar-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.customer-name-text {
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+/* ── Address Cell ────────────────────────────────── */
+.address-cell {
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── Stat Pills ──────────────────────────────────── */
+.stat-pill {
+    display: inline-block;
+    padding: 0.2rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.pill-blue {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.pill-grey {
+    background: var(--gray-100);
+    color: var(--gray-400);
+}
+
+/* ── Action Group ────────────────────────────────── */
+.action-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.view-orders-btn {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--primary);
+    color: var(--white);
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.view-orders-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.delete-form {
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+}
+
+.delete-btn {
+    border: none;
+    color: #ef4444;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 9999px;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    width: 34px;
+    height: 34px;
+    box-shadow: var(--shadow-sm);
+}
+
+.delete-btn:hover {
+    background: #ef4444;
+    color: var(--white);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ── Empty State ─────────────────────────────────── */
+.customers-empty {
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--gray-500);
+    font-size: 1.1rem;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px dashed var(--gray-300);
+    margin: 2rem 0;
+}
+
+.customers-empty::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f0c0';
+    display: block;
+    font-size: 3rem;
+    color: var(--gray-300);
+    margin-bottom: 1rem;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 768px) {
+    .customers-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-input,
+    .status-filter,
+    .search-btn,
+    .clear-btn {
+        width: 100%;
+    }
+
+    .customers-table,
+    .customers-table thead,
+    .customers-table tbody,
+    .customers-table tr,
+    .customers-table td {
+        display: block;
+    }
+
+    .customers-table thead {
+        display: none;
+    }
+
+    .customers-table tr {
+        margin-bottom: 1.5rem;
+        border: 1px solid var(--gray-200);
+        border-radius: var(--radius);
+        padding: 1rem;
+        background: var(--white);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .customers-table td {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px dashed var(--gray-200);
+    }
+
+    .customers-table td:last-child {
+        border-bottom: none;
+    }
+
+    .customers-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--gray-700);
+        min-width: 110px;
+        margin-right: 1rem;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        letter-spacing: 0.02em;
+    }
+
+    .customers-table td:first-child::before {
+        content: '';
+        min-width: 0;
+    }
+
+    .address-cell {
+        max-width: none;
+        white-space: normal;
+    }
+}

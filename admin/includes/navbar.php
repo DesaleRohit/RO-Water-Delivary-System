@@ -9,6 +9,7 @@ $current_page = $_GET['page'] ?? 'dashboard'; // read from query string
     <nav class="sidebar-nav">
         <a href="index.php?page=dashboard" class="nav-link <?= $current_page == 'dashboard' ? 'active' : '' ?>">Dashboard</a>
         <a href="index.php?page=orders" class="nav-link <?= $current_page == 'orders' ? 'active' : '' ?>">Orders</a>
+        <a href="index.php?page=customers" class="nav-link <?= $current_page == 'customers' ? 'active' : '' ?>">Customers</a>
         <a href="index.php?page=messages" class="nav-link <?= $current_page == 'messages' ? 'active' : '' ?>">Messages</a>
         <a href="index.php?page=change-password" class="nav-link <?= $current_page == 'change-password' ? 'active' : '' ?>">Change Password</a>
     </nav>

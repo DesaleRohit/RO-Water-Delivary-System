@@ -29,9 +29,9 @@ $page = $_GET['page'] ?? 'dashboard';
     <?php
     $adminCssMap = [
         'orders'          => 'orders.css',
+        'customers'       => 'customers.css',
         'messages'        => 'messages.css',
-        'change-password' => 'admin-change-pass.css'
-        // Add more mappings as needed
+        'change-password' => 'admin-change-pass.css',       
     ];
 
     if (isset($adminCssMap[$page])) {

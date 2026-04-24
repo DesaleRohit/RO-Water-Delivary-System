@@ -2,7 +2,7 @@
 $host = "localhost";
 $dbname = "ro_water_delivery";
 $username = "root";
-$password = "root";
+$password = "";
 
 try {
     $conn = new PDO(

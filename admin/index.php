@@ -12,6 +12,7 @@ $page = $_GET['page'] ?? 'dashboard';
 $allowed_pages = [
     'dashboard',
     'orders',
+    'customers',
     'messages',
     'change-password'
 ];

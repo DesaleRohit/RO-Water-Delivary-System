@@ -93,16 +93,14 @@ body {
 }
 
 .sidebar-nav .nav-link i {
-    /* if icons are present in HTML? not currently, but we can add pseudo-elements */
     width: 1.25rem;
 }
 
-/* Add icons via pseudo-elements */
 .sidebar-nav .nav-link[href*="dashboard"]::before {
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     content: '\f3fd';
-    /* dashboard */
+    display: inline-block;
     width: 1.25rem;
     color: var(--gray-500);
 }
@@ -111,28 +109,41 @@ body {
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     content: '\f0ca';
-    /* list */
+    display: inline-block;
+    width: 1.25rem;
+    color: var(--gray-500);
+}
+
+.sidebar-nav .nav-link[href*="customers"]::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f0c0';
+    display: inline-block;
+    width: 1.25rem;
+    color: var(--gray-500);
 }
 
 .sidebar-nav .nav-link[href*="messages"]::before {
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     content: '\f086';
-    /* comments */
+    display: inline-block;
+    width: 1.25rem;
+    color: var(--gray-500);
 }
 
 .sidebar-nav .nav-link[href*="change-password"]::before {
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     content: '\f023';
-    /* lock */
+    display: inline-block;
+    width: 1.25rem;
+    color: var(--gray-500);
 }
 
-.sidebar-nav .nav-link:hover,
-.sidebar-nav .nav-link.active {
-    background: var(--gray-100);
+.sidebar-nav .nav-link:hover::before,
+.sidebar-nav .nav-link.active::before {
     color: var(--primary);
-    border-left-color: var(--primary);
 }
 
 .sidebar-nav .nav-link.active::before {
